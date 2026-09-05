@@ -375,8 +375,7 @@ function VocabSection() {
 function VerbSection() {
   const [idx, setIdx] = useState(0);
   const v = VERBS[idx];
-  const tenseData = v.present || v.future;
-  const tenseLabel = v.present ? "Present" : "Future (perfective)";
+  const compoundFuture = {"я":"буду","ты":"будешь","он/она":"будет","мы":"будем","вы":"будете","они":"будут"};
 
   return e('div', null,
     e('div', {style:{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:16}},
@@ -389,14 +388,32 @@ function VerbSection() {
       e('div', {style:{fontSize:15,color:'var(--text-muted)',marginBottom:4}}, `${v.en} · ${v.aspect==='impf'?'imperfective':'perfective'}`),
       e('div', {style:{fontSize:13,color:'var(--accent)',lineHeight:1.5}}, v.note),
     ),
-    tenseData && e('div', {className:'card'},
-      e('div', {className:'label-sm'}, tenseLabel),
-      ...Object.entries(tenseData).map(([p,f]) =>
+    v.present && e('div', {className:'card'},
+      e('div', {className:'label-sm'}, 'Present'),
+      ...Object.entries(v.present).map(([p,f]) =>
         e('div', {key:p, className:'row'}, e('span',{className:'row-label'},p), e('span',{className:'row-value'},f))
       )
     ),
+    v.aspect === 'impf' && v.inf !== 'быть' ? e('div', {className:'card'},
+      e('div', {className:'label-sm'}, 'Future (compound)'),
+      ...Object.entries(compoundFuture).map(([p,f]) =>
+        e('div', {key:p, className:'row'}, e('span',{className:'row-label'},p), e('span',{className:'row-value'},`${f} ${v.inf}`))
+      )
+    ) : null,
+    v.future ? e('div', {className:'card'},
+      e('div', {className:'label-sm'}, 'Future (perfective)'),
+      ...Object.entries(v.future).map(([p,f]) =>
+        e('div', {key:p, className:'row'}, e('span',{className:'row-label'},p), e('span',{className:'row-value'},f))
+      )
+    ) : null,
+    v.inf === 'быть' ? e('div', {className:'card'},
+      e('div', {className:'label-sm'}, 'Future'),
+      ...Object.entries(compoundFuture).map(([p,f]) =>
+        e('div', {key:p, className:'row'}, e('span',{className:'row-label'},p), e('span',{className:'row-value'},f))
+      )
+    ) : null,
     e('div', {className:'card'},
-      e('div', {className:'label-sm'}, 'Past tense'),
+      e('div', {className:'label-sm'}, 'Past'),
       ...Object.entries(v.past).map(([g,f]) =>
         e('div', {key:g, className:'row'}, e('span',{className:'row-label'},g), e('span',{className:'row-value'},f))
       )
