@@ -10,132 +10,48 @@
 <title>Русский: Crash Course</title>
 <link rel="manifest" href="manifest.json">
 <style>
-:root {
-  --bg: #f5f5f0;
-  --bg-card: #ffffff;
-  --text: #1a1a1a;
-  --text-muted: #6b6b6b;
-  --accent: #1a472a;
-  --border: #e8e8e4;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #141414;
-    --bg-card: #1e1e1e;
-    --text: #e8e8e4;
-    --text-muted: #8a8a8a;
-    --accent: #6dba82;
-    --border: #2a2a2a;
-  }
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -webkit-tap-highlight-color: transparent;
-}
-button { font-family: inherit; -webkit-appearance: none; }
-#root { max-width: 520px; margin: 0 auto; padding: 16px 16px 100px; }
-
-.header h1 { font-size: 22px; font-weight: 700; margin-bottom: 2px; }
-.header p { font-size: 13px; color: var(--text-muted); }
-
-.tab-bar {
-  display: flex; gap: 0; margin: 20px 0; border-bottom: 2px solid var(--border);
-  overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
-}
-.tab-bar::-webkit-scrollbar { display: none; }
-.tab-btn {
-  flex: 0 0 auto; padding: 10px 12px; border: none; white-space: nowrap;
-  border-bottom: 2px solid transparent; background: transparent;
-  color: var(--text-muted); font-weight: 400; cursor: pointer; font-size: 14px;
-  margin-bottom: -2px;
-}
-.tab-btn.active { border-bottom-color: var(--accent); color: var(--text); font-weight: 600; }
-
-.pill-bar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-.pill {
-  padding: 6px 12px; border-radius: 6px; border: none; cursor: pointer; font-size: 13px;
-  background: var(--bg-card); color: var(--text); font-weight: 400;
-}
-.pill.active { background: #1a472a; color: #fff; font-weight: 600; }
-
-.card {
-  background: var(--bg-card); border-radius: 8px; padding: 14px; margin-bottom: 10px;
-}
-.card-lg { padding: 16px; margin-bottom: 12px; }
-
-.row {
-  display: flex; justify-content: space-between; padding: 4px 0;
-  border-bottom: 1px solid var(--border);
-}
-.row:last-child { border-bottom: none; }
-.row-label { color: var(--text-muted); }
-.row-value { font-weight: 500; }
-
-.label-sm {
-  font-size: 12px; font-weight: 600; text-transform: uppercase;
-  color: var(--text-muted); margin-bottom: 8px; letter-spacing: 0.5px;
-}
-
-.vocab-row {
-  display: flex; justify-content: space-between; padding: 10px 14px;
-  background: var(--bg-card); border-radius: 6px; cursor: pointer; user-select: none;
-}
-.vocab-row .ru { font-size: 16px; font-weight: 500; }
-.vocab-row .en { font-size: 15px; transition: color 0.15s; }
-
-.phrase-card {
-  background: var(--bg-card); border-radius: 8px; padding: 12px 14px;
-  cursor: pointer; user-select: none;
-}
-.phrase-card .ru { font-size: 16px; font-weight: 500; line-height: 1.5; }
-.phrase-card .en {
-  font-size: 14px; color: var(--text-muted); overflow: hidden; transition: all 0.2s;
-}
-
-.prep-card {
-  background: var(--bg-card); border-radius: 8px; padding: 14px;
-  cursor: pointer; user-select: none;
-}
-.prep-header { display: flex; justify-content: space-between; align-items: baseline; }
-.prep-header .prep { font-size: 16px; font-weight: 600; }
-.prep-header .case { font-size: 12px; color: var(--accent); font-weight: 500; }
-.prep-meaning { font-size: 14px; color: var(--text-muted); margin-top: 2px; }
-.prep-example {
-  margin-top: 8px; padding: 8px 10px; background: var(--bg); border-radius: 4px;
-  font-size: 14px; line-height: 1.6; overflow: hidden; transition: all 0.2s;
-}
-.prep-example .ex { font-weight: 500; }
-.prep-example .exen { color: var(--text-muted); font-size: 13px; }
-
-.quiz-option {
-  padding: 12px 14px; border-radius: 6px; border: 2px solid transparent;
-  background: var(--bg-card); cursor: pointer; text-align: left; font-size: 15px;
-  width: 100%;
-}
-.quiz-option.correct { background: #1a472a22; border-color: #1a472a; }
-.quiz-option.wrong { background: #7a1a1a22; border-color: #7a1a1a; }
-.quiz-option.locked { cursor: default; }
-
-.btn-primary {
-  padding: 10px 24px; border-radius: 6px; border: none;
-  background: #1a472a; color: #fff; cursor: pointer; font-weight: 600; width: 100%;
-}
-.btn-secondary {
-  padding: 10px 20px; border-radius: 6px; border: none;
-  background: var(--bg-card); cursor: pointer;
-}
-.btn-ghost {
-  background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 13px;
-}
-.nav-dot {
-  width: 28px; height: 28px; border-radius: 4px; border: none; font-size: 12px;
-  cursor: pointer; background: var(--bg-card); color: var(--text-muted);
-}
-.nav-dot.active { background: #1a472a; color: #fff; }
+:root{--bg:#f5f5f0;--bg-card:#fff;--text:#1a1a1a;--text-muted:#6b6b6b;--accent:#1a472a;--border:#e8e8e4}
+@media(prefers-color-scheme:dark){:root{--bg:#141414;--bg-card:#1e1e1e;--text:#e8e8e4;--text-muted:#8a8a8a;--accent:#6dba82;--border:#2a2a2a}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+button{font-family:inherit;-webkit-appearance:none}
+#root{max-width:520px;margin:0 auto;padding:16px 16px 100px}
+.header h1{font-size:22px;font-weight:700;margin-bottom:2px}
+.header p{font-size:13px;color:var(--text-muted)}
+.tab-bar{display:flex;gap:0;margin:20px 0;border-bottom:2px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-btn{flex:0 0 auto;padding:10px 12px;border:none;white-space:nowrap;border-bottom:2px solid transparent;background:transparent;color:var(--text-muted);font-weight:400;cursor:pointer;font-size:14px;margin-bottom:-2px}
+.tab-btn.active{border-bottom-color:var(--accent);color:var(--text);font-weight:600}
+.pill-bar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.pill{padding:6px 12px;border-radius:6px;border:none;cursor:pointer;font-size:13px;background:var(--bg-card);color:var(--text);font-weight:400}
+.pill.active{background:#1a472a;color:#fff;font-weight:600}
+.card{background:var(--bg-card);border-radius:8px;padding:14px;margin-bottom:10px}
+.card-lg{padding:16px;margin-bottom:12px}
+.row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border)}
+.row:last-child{border-bottom:none}
+.row-label{color:var(--text-muted)}.row-value{font-weight:500}
+.label-sm{font-size:12px;font-weight:600;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;letter-spacing:.5px}
+.vocab-row{display:flex;justify-content:space-between;padding:10px 14px;background:var(--bg-card);border-radius:6px;cursor:pointer;user-select:none}
+.vocab-row .ru{font-size:16px;font-weight:500}.vocab-row .en{font-size:15px;transition:color .15s}
+.phrase-card{background:var(--bg-card);border-radius:8px;padding:12px 14px;cursor:pointer;user-select:none}
+.phrase-card .ru{font-size:16px;font-weight:500;line-height:1.5}
+.phrase-card .en{font-size:14px;color:var(--text-muted);overflow:hidden;transition:all .2s}
+.prep-card{background:var(--bg-card);border-radius:8px;padding:14px;cursor:pointer;user-select:none}
+.prep-header{display:flex;justify-content:space-between;align-items:baseline}
+.prep-header .prep{font-size:16px;font-weight:600}
+.prep-header .case{font-size:12px;color:var(--accent);font-weight:500}
+.prep-meaning{font-size:14px;color:var(--text-muted);margin-top:2px}
+.prep-example{margin-top:8px;padding:8px 10px;background:var(--bg);border-radius:4px;font-size:14px;line-height:1.6;overflow:hidden;transition:all .2s}
+.prep-example .ex{font-weight:500}.prep-example .exen{color:var(--text-muted);font-size:13px}
+.quiz-option{padding:12px 14px;border-radius:6px;border:2px solid transparent;background:var(--bg-card);cursor:pointer;text-align:left;font-size:15px;width:100%}
+.quiz-option.correct{background:#1a472a22;border-color:#1a472a}
+.quiz-option.wrong{background:#7a1a1a22;border-color:#7a1a1a}
+.quiz-option.locked{cursor:default}
+.btn-primary{padding:10px 24px;border-radius:6px;border:none;background:#1a472a;color:#fff;cursor:pointer;font-weight:600;width:100%}
+.btn-secondary{padding:10px 20px;border-radius:6px;border:none;background:var(--bg-card);cursor:pointer}
+.btn-ghost{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:13px}
+.nav-dot{width:28px;height:28px;border-radius:4px;border:none;font-size:12px;cursor:pointer;background:var(--bg-card);color:var(--text-muted)}
+.nav-dot.active{background:#1a472a;color:#fff}
 </style>
 </head>
 <body>
@@ -143,515 +59,302 @@ button { font-family: inherit; -webkit-appearance: none; }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
 <script>
-const {useState, useCallback, useMemo, createElement: h} = React;
-const e = h; // shorthand
+const {useState,useCallback,useMemo,createElement:e}=React;
 
-const VOCAB = {
-  "Daily life": [
-    {ru:"завтрак",en:"breakfast"},{ru:"обед",en:"lunch"},{ru:"ужин",en:"dinner"},
-    {ru:"магазин",en:"shop/store"},{ru:"работа",en:"work/job"},{ru:"квартира",en:"flat/apartment"},
-    {ru:"комната",en:"room"},{ru:"улица",en:"street"},{ru:"деньги",en:"money"},
-    {ru:"вещь",en:"thing"},{ru:"время",en:"time"},{ru:"погода",en:"weather"},
-    {ru:"здоровье",en:"health"},{ru:"город",en:"city"},{ru:"страна",en:"country"},
-  ],
-  "People & family": [
-    {ru:"семья",en:"family"},{ru:"друг / подруга",en:"friend (m/f)"},{ru:"муж",en:"husband"},
-    {ru:"жена",en:"wife"},{ru:"ребёнок",en:"child"},{ru:"дети",en:"children"},
-    {ru:"родители",en:"parents"},{ru:"брат",en:"brother"},{ru:"сестра",en:"sister"},
-    {ru:"сын",en:"son"},{ru:"дочь",en:"daughter"},{ru:"бабушка",en:"grandmother"},
-    {ru:"дедушка",en:"grandfather"},{ru:"сосед",en:"neighbour"},{ru:"человек",en:"person"},
-    {ru:"люди",en:"people"},
-  ],
-  "Work & study": [
-    {ru:"компания",en:"company"},{ru:"офис",en:"office"},{ru:"начальник",en:"boss"},
-    {ru:"коллега",en:"colleague"},{ru:"зарплата",en:"salary"},{ru:"встреча",en:"meeting"},
-    {ru:"задача",en:"task"},{ru:"проект",en:"project"},{ru:"компьютер",en:"computer"},
-    {ru:"опыт",en:"experience"},{ru:"образование",en:"education"},{ru:"университет",en:"university"},
-    {ru:"язык",en:"language"},{ru:"урок",en:"lesson"},{ru:"студент",en:"student"},
-  ],
-  "Describing photos": [
-    {ru:"мужчина",en:"man"},{ru:"женщина",en:"woman"},{ru:"девушка",en:"girl/young woman"},
-    {ru:"молодой человек",en:"young man"},{ru:"слева",en:"on the left"},{ru:"справа",en:"on the right"},
-    {ru:"в центре",en:"in the centre"},{ru:"на переднем плане",en:"in the foreground"},
-    {ru:"на заднем плане",en:"in the background"},{ru:"рядом с",en:"next to"},
-    {ru:"между",en:"between"},{ru:"около",en:"near/about"},{ru:"стоять",en:"to stand"},
-    {ru:"сидеть",en:"to sit"},{ru:"держать",en:"to hold"},{ru:"смотреть",en:"to look at"},
-    {ru:"улыбаться",en:"to smile"},{ru:"разговаривать",en:"to talk/converse"},
-    {ru:"одежда",en:"clothes"},{ru:"лицо",en:"face"},
-  ],
-  "Adjectives": [
-    {ru:"большой",en:"big"},{ru:"маленький",en:"small"},{ru:"новый",en:"new"},
-    {ru:"старый",en:"old"},{ru:"хороший",en:"good"},{ru:"плохой",en:"bad"},
-    {ru:"красивый",en:"beautiful"},{ru:"важный",en:"important"},{ru:"трудный",en:"difficult"},
-    {ru:"лёгкий",en:"easy/light"},{ru:"дорогой",en:"expensive/dear"},{ru:"дешёвый",en:"cheap"},
-    {ru:"свободный",en:"free"},{ru:"готовый",en:"ready"},{ru:"нужный",en:"necessary"},
-    {ru:"высокий",en:"tall/high"},{ru:"молодой",en:"young"},{ru:"длинный",en:"long"},
-    {ru:"короткий",en:"short"},{ru:"тёмный",en:"dark"},{ru:"светлый",en:"light/fair"},
-  ],
-  "Colours": [
-    {ru:"белый",en:"white"},{ru:"чёрный",en:"black"},{ru:"красный",en:"red"},
-    {ru:"синий",en:"dark blue"},{ru:"голубой",en:"light blue"},{ru:"зелёный",en:"green"},
-    {ru:"жёлтый",en:"yellow"},{ru:"серый",en:"grey"},{ru:"коричневый",en:"brown"},
-    {ru:"розовый",en:"pink"},
-  ],
-  "Time & place": [
-    {ru:"сегодня",en:"today"},{ru:"вчера",en:"yesterday"},{ru:"завтра",en:"tomorrow"},
-    {ru:"сейчас",en:"now"},{ru:"потом",en:"then/later"},{ru:"всегда",en:"always"},
-    {ru:"никогда",en:"never"},{ru:"иногда",en:"sometimes"},{ru:"часто",en:"often"},
-    {ru:"здесь / тут",en:"here"},{ru:"там",en:"there"},{ru:"далеко",en:"far"},
-    {ru:"близко",en:"near"},{ru:"направо",en:"to the right"},{ru:"налево",en:"to the left"},
-  ],
-  "Connectors": [
-    {ru:"потому что",en:"because"},{ru:"поэтому",en:"therefore"},{ru:"но",en:"but"},
-    {ru:"или",en:"or"},{ru:"если",en:"if"},{ru:"когда",en:"when"},
-    {ru:"чтобы",en:"in order to"},{ru:"хотя",en:"although"},{ru:"тоже / также",en:"also/too"},
-    {ru:"ещё",en:"still/more/yet"},{ru:"уже",en:"already"},{ru:"конечно",en:"of course"},
-  ],
+const VOCAB={
+"Daily life":[
+{ru:"за́втрак",en:"breakfast"},{ru:"обе́д",en:"lunch"},{ru:"у́жин",en:"dinner"},
+{ru:"магази́н",en:"shop/store"},{ru:"рабо́та",en:"work/job"},{ru:"кварти́ра",en:"flat/apartment"},
+{ru:"ко́мната",en:"room"},{ru:"у́лица",en:"street"},{ru:"де́ньги",en:"money"},
+{ru:"вещь",en:"thing"},{ru:"вре́мя",en:"time"},{ru:"пого́да",en:"weather"},
+{ru:"здоро́вье",en:"health"},{ru:"го́род",en:"city"},{ru:"страна́",en:"country"},
+],
+"People & family":[
+{ru:"семья́",en:"family"},{ru:"друг / подру́га",en:"friend (m/f)"},{ru:"муж",en:"husband"},
+{ru:"жена́",en:"wife"},{ru:"ребёнок",en:"child"},{ru:"де́ти",en:"children"},
+{ru:"роди́тели",en:"parents"},{ru:"брат",en:"brother"},{ru:"сестра́",en:"sister"},
+{ru:"сын",en:"son"},{ru:"дочь",en:"daughter"},{ru:"ба́бушка",en:"grandmother"},
+{ru:"де́душка",en:"grandfather"},{ru:"сосе́д",en:"neighbour"},{ru:"челове́к",en:"person"},
+{ru:"лю́ди",en:"people"},
+],
+"Work & study":[
+{ru:"компа́ния",en:"company"},{ru:"о́фис",en:"office"},{ru:"нача́льник",en:"boss"},
+{ru:"колле́га",en:"colleague"},{ru:"зарпла́та",en:"salary"},{ru:"встре́ча",en:"meeting"},
+{ru:"зада́ча",en:"task"},{ru:"прое́кт",en:"project"},{ru:"компью́тер",en:"computer"},
+{ru:"о́пыт",en:"experience"},{ru:"образова́ние",en:"education"},{ru:"университе́т",en:"university"},
+{ru:"язы́к",en:"language"},{ru:"уро́к",en:"lesson"},{ru:"студе́нт",en:"student"},
+],
+"Describing photos":[
+{ru:"мужчи́на",en:"man"},{ru:"же́нщина",en:"woman"},{ru:"де́вушка",en:"girl/young woman"},
+{ru:"молодо́й челове́к",en:"young man"},{ru:"сле́ва",en:"on the left"},{ru:"спра́ва",en:"on the right"},
+{ru:"в це́нтре",en:"in the centre"},{ru:"на пере́днем пла́не",en:"in the foreground"},
+{ru:"на за́днем пла́не",en:"in the background"},{ru:"ря́дом с",en:"next to"},
+{ru:"ме́жду",en:"between"},{ru:"о́коло",en:"near/about"},{ru:"стоя́ть",en:"to stand"},
+{ru:"сиде́ть",en:"to sit"},{ru:"держа́ть",en:"to hold"},{ru:"смотре́ть",en:"to look at"},
+{ru:"улыба́ться",en:"to smile"},{ru:"разгова́ривать",en:"to talk/converse"},
+{ru:"оде́жда",en:"clothes"},{ru:"лицо́",en:"face"},
+],
+"Adjectives":[
+{ru:"большо́й",en:"big"},{ru:"ма́ленький",en:"small"},{ru:"но́вый",en:"new"},
+{ru:"ста́рый",en:"old"},{ru:"хоро́ший",en:"good"},{ru:"плохо́й",en:"bad"},
+{ru:"краси́вый",en:"beautiful"},{ru:"ва́жный",en:"important"},{ru:"тру́дный",en:"difficult"},
+{ru:"лёгкий",en:"easy/light"},{ru:"дорого́й",en:"expensive/dear"},{ru:"дешёвый",en:"cheap"},
+{ru:"свобо́дный",en:"free"},{ru:"гото́вый",en:"ready"},{ru:"ну́жный",en:"necessary"},
+{ru:"высо́кий",en:"tall/high"},{ru:"молодо́й",en:"young"},{ru:"дли́нный",en:"long"},
+{ru:"коро́ткий",en:"short"},{ru:"тёмный",en:"dark"},{ru:"све́тлый",en:"light/fair"},
+],
+"Colours":[
+{ru:"бе́лый",en:"white"},{ru:"чёрный",en:"black"},{ru:"кра́сный",en:"red"},
+{ru:"си́ний",en:"dark blue"},{ru:"голубо́й",en:"light blue"},{ru:"зелёный",en:"green"},
+{ru:"жёлтый",en:"yellow"},{ru:"се́рый",en:"grey"},{ru:"кори́чневый",en:"brown"},
+{ru:"ро́зовый",en:"pink"},
+],
+"Time & place":[
+{ru:"сего́дня",en:"today"},{ru:"вчера́",en:"yesterday"},{ru:"за́втра",en:"tomorrow"},
+{ru:"сейча́с",en:"now"},{ru:"пото́м",en:"then/later"},{ru:"всегда́",en:"always"},
+{ru:"никогда́",en:"never"},{ru:"иногда́",en:"sometimes"},{ru:"ча́сто",en:"often"},
+{ru:"здесь / тут",en:"here"},{ru:"там",en:"there"},{ru:"далеко́",en:"far"},
+{ru:"бли́зко",en:"near"},{ru:"напра́во",en:"to the right"},{ru:"нале́во",en:"to the left"},
+],
+"Connectors":[
+{ru:"потому́ что",en:"because"},{ru:"поэ́тому",en:"therefore"},{ru:"но",en:"but"},
+{ru:"и́ли",en:"or"},{ru:"е́сли",en:"if"},{ru:"когда́",en:"when"},
+{ru:"что́бы",en:"in order to"},{ru:"хотя́",en:"although"},{ru:"то́же / та́кже",en:"also/too"},
+{ru:"ещё",en:"still/more/yet"},{ru:"уже́",en:"already"},{ru:"коне́чно",en:"of course"},
+],
 };
 
-const VERBS = [
-  {inf:"быть",en:"to be",aspect:"impf",present:null,past:{m:"был",f:"была",n:"было",pl:"были"},note:"No present tense conjugation in modern Russian."},
-  {inf:"хотеть",en:"to want",aspect:"impf",present:{"я":"хочу","ты":"хочешь","он/она":"хочет","мы":"хотим","вы":"хотите","они":"хотят"},past:{m:"хотел",f:"хотела",n:"хотело",pl:"хотели"},note:"Mixed conjugation: 1st conj. in singular, 2nd in plural."},
-  {inf:"мочь",en:"to be able to",aspect:"impf",present:{"я":"могу","ты":"можешь","он/она":"может","мы":"можем","вы":"можете","они":"могут"},past:{m:"мог",f:"могла",n:"могло",pl:"могли"},note:"Perfective: смочь."},
-  {inf:"знать",en:"to know",aspect:"impf",present:{"я":"знаю","ты":"знаешь","он/она":"знает","мы":"знаем","вы":"знаете","они":"знают"},past:{m:"знал",f:"знала",n:"знало",pl:"знали"},note:"Regular 1st conjugation."},
-  {inf:"говорить",en:"to speak/say",aspect:"impf",present:{"я":"говорю","ты":"говоришь","он/она":"говорит","мы":"говорим","вы":"говорите","они":"говорят"},past:{m:"говорил",f:"говорила",n:"говорило",pl:"говорили"},note:"Perfective: сказать (to say) / поговорить (to chat)."},
-  {inf:"сказать",en:"to say (perf.)",aspect:"perf",present:null,future:{"я":"скажу","ты":"скажешь","он/она":"скажет","мы":"скажем","вы":"скажете","они":"скажут"},past:{m:"сказал",f:"сказала",n:"сказало",pl:"сказали"},note:"Perfective of говорить. Mutation: з → ж."},
-  {inf:"делать",en:"to do/make",aspect:"impf",present:{"я":"делаю","ты":"делаешь","он/она":"делает","мы":"делаем","вы":"делаете","они":"делают"},past:{m:"делал",f:"делала",n:"делало",pl:"делали"},note:"Perfective: сделать."},
-  {inf:"идти",en:"to go (on foot, one dir.)",aspect:"impf",present:{"я":"иду","ты":"идёшь","он/она":"идёт","мы":"идём","вы":"идёте","они":"идут"},past:{m:"шёл",f:"шла",n:"шло",pl:"шли"},note:"Unidirectional. Multi: ходить. Irregular past."},
-  {inf:"ходить",en:"to go (on foot, habitual)",aspect:"impf",present:{"я":"хожу","ты":"ходишь","он/она":"ходит","мы":"ходим","вы":"ходите","они":"ходят"},past:{m:"ходил",f:"ходила",n:"ходило",pl:"ходили"},note:"Multidirectional/habitual on foot."},
-  {inf:"ехать",en:"to go (transport, one dir.)",aspect:"impf",present:{"я":"еду","ты":"едешь","он/она":"едет","мы":"едем","вы":"едете","они":"едут"},past:{m:"ехал",f:"ехала",n:"ехало",pl:"ехали"},note:"Unidirectional by vehicle. Multi: ездить."},
-  {inf:"ездить",en:"to go (transport, habitual)",aspect:"impf",present:{"я":"езжу","ты":"ездишь","он/она":"ездит","мы":"ездим","вы":"ездите","они":"ездят"},past:{m:"ездил",f:"ездила",n:"ездило",pl:"ездили"},note:"Multidirectional by vehicle. Note: я езжу."},
-  {inf:"жить",en:"to live",aspect:"impf",present:{"я":"живу","ты":"живёшь","он/она":"живёт","мы":"живём","вы":"живёте","они":"живут"},past:{m:"жил",f:"жила",n:"жило",pl:"жили"},note:"Stress shifts in past fem: жилА."},
-  {inf:"писать",en:"to write",aspect:"impf",present:{"я":"пишу","ты":"пишешь","он/она":"пишет","мы":"пишем","вы":"пишете","они":"пишут"},past:{m:"писал",f:"писала",n:"писало",pl:"писали"},note:"Mutation: с → ш. Perfective: написать."},
-  {inf:"читать",en:"to read",aspect:"impf",present:{"я":"читаю","ты":"читаешь","он/она":"читает","мы":"читаем","вы":"читаете","они":"читают"},past:{m:"читал",f:"читала",n:"читало",pl:"читали"},note:"Regular 1st conj. Perfective: прочитать."},
-  {inf:"есть",en:"to eat",aspect:"impf",present:{"я":"ем","ты":"ешь","он/она":"ест","мы":"едим","вы":"едите","они":"едят"},past:{m:"ел",f:"ела",n:"ело",pl:"ели"},note:"Irregular. Perfective: съесть."},
-  {inf:"пить",en:"to drink",aspect:"impf",present:{"я":"пью","ты":"пьёшь","он/она":"пьёт","мы":"пьём","вы":"пьёте","они":"пьют"},past:{m:"пил",f:"пила",n:"пило",pl:"пили"},note:"Perfective: выпить."},
-  {inf:"нравиться",en:"to be pleasing (to like)",aspect:"impf",present:{"он/она":"нравится","они":"нравятся"},past:{m:"нравился",f:"нравилась",n:"нравилось",pl:"нравились"},note:"Dative + нравится: мне нравится кофе."},
-  {inf:"работать",en:"to work",aspect:"impf",present:{"я":"работаю","ты":"работаешь","он/она":"работает","мы":"работаем","вы":"работаете","они":"работают"},past:{m:"работал",f:"работала",n:"работало",pl:"работали"},note:"Regular 1st conjugation."},
-  {inf:"видеть",en:"to see",aspect:"impf",present:{"я":"вижу","ты":"видишь","он/она":"видит","мы":"видим","вы":"видите","они":"видят"},past:{m:"видел",f:"видела",n:"видело",pl:"видели"},note:"2nd conj. Mutation: д → ж (1st pers). Perf: увидеть."},
-  {inf:"понимать",en:"to understand",aspect:"impf",present:{"я":"понимаю","ты":"понимаешь","он/она":"понимает","мы":"понимаем","вы":"понимаете","они":"понимают"},past:{m:"понимал",f:"понимала",n:"понимало",pl:"понимали"},note:"Perfective: понять (пойму, поймёшь...)."},
-  {inf:"думать",en:"to think",aspect:"impf",present:{"я":"думаю","ты":"думаешь","он/она":"думает","мы":"думаем","вы":"думаете","они":"думают"},past:{m:"думал",f:"думала",n:"думало",pl:"думали"},note:"Regular 1st conj. Perfective: подумать."},
-  {inf:"купить",en:"to buy (perf.)",aspect:"perf",present:null,future:{"я":"куплю","ты":"купишь","он/она":"купит","мы":"купим","вы":"купите","они":"купят"},past:{m:"купил",f:"купила",n:"купило",pl:"купили"},note:"Imperfective: покупать. Mutation: п → пл."},
-  {inf:"дать",en:"to give (perf.)",aspect:"perf",present:null,future:{"я":"дам","ты":"дашь","он/она":"даст","мы":"дадим","вы":"дадите","они":"дадут"},past:{m:"дал",f:"дала",n:"дало",pl:"дали"},note:"Irregular. Imperfective: давать (даю, даёшь...)."},
+const VERBS=[
+{inf:"быть",en:"to be",aspect:"impf",present:null,past:{m:"был",f:"была́",n:"бы́ло",pl:"бы́ли"},note:"No present tense conjugation in modern Russian."},
+{inf:"хоте́ть",en:"to want",aspect:"impf",present:{"я":"хочу́","ты":"хо́чешь","он/она":"хо́чет","мы":"хоти́м","вы":"хоти́те","они":"хотя́т"},past:{m:"хоте́л",f:"хоте́ла",n:"хоте́ло",pl:"хоте́ли"},note:"Mixed conjugation: 1st conj. in singular, 2nd in plural."},
+{inf:"мочь",en:"to be able to",aspect:"impf",present:{"я":"могу́","ты":"мо́жешь","он/она":"мо́жет","мы":"мо́жем","вы":"мо́жете","они":"мо́гут"},past:{m:"мог",f:"могла́",n:"могло́",pl:"могли́"},note:"Perfective: смочь."},
+{inf:"знать",en:"to know",aspect:"impf",present:{"я":"зна́ю","ты":"зна́ешь","он/она":"зна́ет","мы":"зна́ем","вы":"зна́ете","они":"зна́ют"},past:{m:"знал",f:"зна́ла",n:"зна́ло",pl:"зна́ли"},note:"Regular 1st conjugation."},
+{inf:"говори́ть",en:"to speak/say",aspect:"impf",present:{"я":"говорю́","ты":"говори́шь","он/она":"говори́т","мы":"говори́м","вы":"говори́те","они":"говоря́т"},past:{m:"говори́л",f:"говори́ла",n:"говори́ло",pl:"говори́ли"},note:"Perfective: сказа́ть (to say) / поговори́ть (to chat)."},
+{inf:"сказа́ть",en:"to say (perf.)",aspect:"perf",present:null,future:{"я":"скажу́","ты":"ска́жешь","он/она":"ска́жет","мы":"ска́жем","вы":"ска́жете","они":"ска́жут"},past:{m:"сказа́л",f:"сказа́ла",n:"сказа́ло",pl:"сказа́ли"},note:"Perfective of говори́ть. Mutation: з → ж."},
+{inf:"де́лать",en:"to do/make",aspect:"impf",present:{"я":"де́лаю","ты":"де́лаешь","он/она":"де́лает","мы":"де́лаем","вы":"де́лаете","они":"де́лают"},past:{m:"де́лал",f:"де́лала",n:"де́лало",pl:"де́лали"},note:"Perfective: сде́лать."},
+{inf:"идти́",en:"to go (on foot, one dir.)",aspect:"impf",present:{"я":"иду́","ты":"идёшь","он/она":"идёт","мы":"идём","вы":"идёте","они":"иду́т"},past:{m:"шёл",f:"шла",n:"шло",pl:"шли"},note:"Unidirectional. Multi: ходи́ть. Irregular past."},
+{inf:"ходи́ть",en:"to go (on foot, habitual)",aspect:"impf",present:{"я":"хожу́","ты":"хо́дишь","он/она":"хо́дит","мы":"хо́дим","вы":"хо́дите","они":"хо́дят"},past:{m:"ходи́л",f:"ходи́ла",n:"ходи́ло",pl:"ходи́ли"},note:"Multidirectional/habitual on foot."},
+{inf:"е́хать",en:"to go (transport, one dir.)",aspect:"impf",present:{"я":"е́ду","ты":"е́дешь","он/она":"е́дет","мы":"е́дем","вы":"е́дете","они":"е́дут"},past:{m:"е́хал",f:"е́хала",n:"е́хало",pl:"е́хали"},note:"Unidirectional by vehicle. Multi: е́здить."},
+{inf:"е́здить",en:"to go (transport, habitual)",aspect:"impf",present:{"я":"е́зжу","ты":"е́здишь","он/она":"е́здит","мы":"е́здим","вы":"е́здите","они":"е́здят"},past:{m:"е́здил",f:"е́здила",n:"е́здило",pl:"е́здили"},note:"Multidirectional by vehicle. Note: я е́зжу."},
+{inf:"жить",en:"to live",aspect:"impf",present:{"я":"живу́","ты":"живёшь","он/она":"живёт","мы":"живём","вы":"живёте","они":"живу́т"},past:{m:"жил",f:"жила́",n:"жи́ло",pl:"жи́ли"},note:"Stress shifts in past fem: жила́."},
+{inf:"писа́ть",en:"to write",aspect:"impf",present:{"я":"пишу́","ты":"пи́шешь","он/она":"пи́шет","мы":"пи́шем","вы":"пи́шете","они":"пи́шут"},past:{m:"писа́л",f:"писа́ла",n:"писа́ло",pl:"писа́ли"},note:"Mutation: с → ш. Perfective: написа́ть."},
+{inf:"чита́ть",en:"to read",aspect:"impf",present:{"я":"чита́ю","ты":"чита́ешь","он/она":"чита́ет","мы":"чита́ем","вы":"чита́ете","они":"чита́ют"},past:{m:"чита́л",f:"чита́ла",n:"чита́ло",pl:"чита́ли"},note:"Regular 1st conj. Perfective: прочита́ть."},
+{inf:"есть",en:"to eat",aspect:"impf",present:{"я":"ем","ты":"ешь","он/она":"ест","мы":"еди́м","вы":"еди́те","они":"едя́т"},past:{m:"ел",f:"е́ла",n:"е́ло",pl:"е́ли"},note:"Irregular. Perfective: съесть."},
+{inf:"пить",en:"to drink",aspect:"impf",present:{"я":"пью","ты":"пьёшь","он/она":"пьёт","мы":"пьём","вы":"пьёте","они":"пьют"},past:{m:"пил",f:"пила́",n:"пи́ло",pl:"пи́ли"},note:"Perfective: вы́пить."},
+{inf:"нра́виться",en:"to be pleasing (to like)",aspect:"impf",present:{"он/она":"нра́вится","они":"нра́вятся"},past:{m:"нра́вился",f:"нра́вилась",n:"нра́вилось",pl:"нра́вились"},note:"Dative + нра́вится: мне нра́вится ко́фе."},
+{inf:"рабо́тать",en:"to work",aspect:"impf",present:{"я":"рабо́таю","ты":"рабо́таешь","он/она":"рабо́тает","мы":"рабо́таем","вы":"рабо́таете","они":"рабо́тают"},past:{m:"рабо́тал",f:"рабо́тала",n:"рабо́тало",pl:"рабо́тали"},note:"Regular 1st conjugation."},
+{inf:"ви́деть",en:"to see",aspect:"impf",present:{"я":"ви́жу","ты":"ви́дишь","он/она":"ви́дит","мы":"ви́дим","вы":"ви́дите","они":"ви́дят"},past:{m:"ви́дел",f:"ви́дела",n:"ви́дело",pl:"ви́дели"},note:"2nd conj. Mutation: д → ж (1st pers). Perf: уви́деть."},
+{inf:"понима́ть",en:"to understand",aspect:"impf",present:{"я":"понима́ю","ты":"понима́ешь","он/она":"понима́ет","мы":"понима́ем","вы":"понима́ете","они":"понима́ют"},past:{m:"понима́л",f:"понима́ла",n:"понима́ло",pl:"понима́ли"},note:"Perfective: поня́ть (пойму́, поймёшь...)."},
+{inf:"ду́мать",en:"to think",aspect:"impf",present:{"я":"ду́маю","ты":"ду́маешь","он/она":"ду́мает","мы":"ду́маем","вы":"ду́маете","они":"ду́мают"},past:{m:"ду́мал",f:"ду́мала",n:"ду́мало",pl:"ду́мали"},note:"Regular 1st conj. Perfective: поду́мать."},
+{inf:"купи́ть",en:"to buy (perf.)",aspect:"perf",present:null,future:{"я":"куплю́","ты":"ку́пишь","он/она":"ку́пит","мы":"ку́пим","вы":"ку́пите","они":"ку́пят"},past:{m:"купи́л",f:"купи́ла",n:"купи́ло",pl:"купи́ли"},note:"Imperfective: покупа́ть. Mutation: п → пл."},
+{inf:"дать",en:"to give (perf.)",aspect:"perf",present:null,future:{"я":"дам","ты":"дашь","он/она":"даст","мы":"дади́м","вы":"дади́те","они":"даду́т"},past:{m:"дал",f:"дала́",n:"да́ло",pl:"да́ли"},note:"Irregular. Imperfective: дава́ть (даю́, даёшь...)."},
 ];
 
-const CASES = [
-  {name:"Nominative",ru:"Именительный",question:"кто? что?",use:"Subject of a sentence",examples:["Собака спит.","Это мой друг."],endings:{"m hard":"-∅ / -й","m soft":"-ь","f hard":"-а","f soft":"-я / -ь","n":"-о / -е","pl":"-ы / -и / -а"}},
-  {name:"Genitive",ru:"Родительный",question:"кого? чего?",use:"Possession, absence (нет + gen.), after numbers 2-4, quantities, prepositions: из, от, до, без, у, после",examples:["У меня нет кошки.","Стакан воды.","Два стула."],endings:{"m hard":"-а","m soft":"-я","f hard":"-ы","f soft":"-и","n":"-а / -я","pl":"-ов / -ей / -∅"}},
-  {name:"Dative",ru:"Дательный",question:"кому? чему?",use:"Indirect object, age (мне 25 лет), with нравиться/нужно/можно/нельзя, preposition к",examples:["Мне нравится музыка.","Я дал книгу другу.","Ей 30 лет."],endings:{"m hard":"-у","m soft":"-ю","f hard":"-е","f soft":"-и / -е","n":"-у / -ю","pl":"-ам / -ям"}},
-  {name:"Accusative",ru:"Винительный",question:"кого? что?",use:"Direct object, direction (в/на + acc.), duration",examples:["Я читаю книгу.","Я иду в школу.","Я люблю маму."],endings:{"m inan.":"= nom.","m anim.":"= gen.","f hard":"-у","f soft":"-ю","n":"= nom.","pl inan.":"= nom.","pl anim.":"= gen."}},
-  {name:"Instrumental",ru:"Творительный",question:"кем? чем?",use:"With (с + instr.), means/instrument, after быть/стать/работать, seasons",examples:["Я пишу ручкой.","Она работает врачом.","Кофе с молоком."],endings:{"m hard":"-ом","m soft":"-ем","f hard":"-ой","f soft":"-ей / -ёй","n":"-ом / -ем","pl":"-ами / -ями"}},
-  {name:"Prepositional",ru:"Предложный",question:"о ком? о чём? где?",use:"Location (в/на + prep.), about (о/об + prep.)",examples:["Я живу в Москве.","Мы говорим о работе.","Книга на столе."],endings:{"m hard":"-е","m soft":"-е / -и","f hard":"-е","f soft":"-е / -и","n":"-е","pl":"-ах / -ях"}},
+const CASES=[
+{name:"Nominative",ru:"Имени́тельный",question:"кто? что?",use:"Subject of a sentence",examples:["Соба́ка спит.","Э́то мой друг."],endings:{"m hard":"-∅ / -й","m soft":"-ь","f hard":"-а","f soft":"-я / -ь","n":"-о / -е","pl":"-ы / -и / -а"}},
+{name:"Genitive",ru:"Роди́тельный",question:"кого́? чего́?",use:"Possession, absence (нет + gen.), after numbers 2-4, quantities, prepositions: из, от, до, без, у, по́сле",examples:["У меня́ нет ко́шки.","Стака́н воды́.","Два сту́ла."],endings:{"m hard":"-а","m soft":"-я","f hard":"-ы","f soft":"-и","n":"-а / -я","pl":"-ов / -ей / -∅"}},
+{name:"Dative",ru:"Да́тельный",question:"кому́? чему́?",use:"Indirect object, age (мне 25 лет), with нра́виться/ну́жно/мо́жно/нельзя́, preposition к",examples:["Мне нра́вится му́зыка.","Я дал кни́гу дру́гу.","Ей три́дцать лет."],endings:{"m hard":"-у","m soft":"-ю","f hard":"-е","f soft":"-и / -е","n":"-у / -ю","pl":"-ам / -ям"}},
+{name:"Accusative",ru:"Вини́тельный",question:"кого́? что?",use:"Direct object, direction (в/на + acc.), duration",examples:["Я чита́ю кни́гу.","Я иду́ в шко́лу.","Я люблю́ ма́му."],endings:{"m inan.":"= nom.","m anim.":"= gen.","f hard":"-у","f soft":"-ю","n":"= nom.","pl inan.":"= nom.","pl anim.":"= gen."}},
+{name:"Instrumental",ru:"Твори́тельный",question:"кем? чем?",use:"With (с + instr.), means/instrument, after быть/стать/рабо́тать, seasons",examples:["Я пишу́ ру́чкой.","Она́ рабо́тает врачо́м.","Ко́фе с молоко́м."],endings:{"m hard":"-ом","m soft":"-ем","f hard":"-ой","f soft":"-ей / -ёй","n":"-ом / -ем","pl":"-ами / -ями"}},
+{name:"Prepositional",ru:"Предло́жный",question:"о ком? о чём? где?",use:"Location (в/на + prep.), about (о/об + prep.)",examples:["Я живу́ в Москве́.","Мы говори́м о рабо́те.","Кни́га на столе́."],endings:{"m hard":"-е","m soft":"-е / -и","f hard":"-е","f soft":"-е / -и","n":"-е","pl":"-ах / -ях"}},
 ];
 
-const PREPOSITIONS = [
-  {group:"Location vs direction",items:[
-    {prep:"в + prep.",en:"in/at (location)",case:"Prepositional",ex:"Я живу в Испании.",exEn:"I live in Spain."},
-    {prep:"в + acc.",en:"to/into (direction)",case:"Accusative",ex:"Я иду в магазин.",exEn:"I'm going to the shop."},
-    {prep:"на + prep.",en:"on/at (location)",case:"Prepositional",ex:"Книга на столе.",exEn:"The book is on the table."},
-    {prep:"на + acc.",en:"to/onto (direction)",case:"Accusative",ex:"Я еду на работу.",exEn:"I'm going to work."},
-    {prep:"из + gen.",en:"from (out of)",case:"Genitive",ex:"Я из Ирландии.",exEn:"I'm from Ireland."},
-    {prep:"с + gen.",en:"from (off of)",case:"Genitive",ex:"Он встал с дивана.",exEn:"He got up from the sofa."},
-  ]},
-  {group:"Common with genitive",items:[
-    {prep:"у + gen.",en:"at/by; possession (у меня есть)",case:"Genitive",ex:"У меня есть собака.",exEn:"I have a dog."},
-    {prep:"без + gen.",en:"without",case:"Genitive",ex:"Кофе без сахара.",exEn:"Coffee without sugar."},
-    {prep:"до + gen.",en:"until/before/up to",case:"Genitive",ex:"До встречи!",exEn:"See you!"},
-    {prep:"после + gen.",en:"after",case:"Genitive",ex:"После работы я отдыхаю.",exEn:"After work I rest."},
-    {prep:"около + gen.",en:"near/about",case:"Genitive",ex:"Около дома есть парк.",exEn:"Near the house there is a park."},
-    {prep:"от + gen.",en:"from (a person/source)",case:"Genitive",ex:"Письмо от мамы.",exEn:"A letter from mum."},
-  ]},
-  {group:"Dative",items:[
-    {prep:"к + dat.",en:"towards/to (a person)",case:"Dative",ex:"Я иду к врачу.",exEn:"I'm going to the doctor."},
-    {prep:"по + dat.",en:"along/around; by (phone/email)",case:"Dative",ex:"Мы гуляем по городу.",exEn:"We walk around the city."},
-  ]},
-  {group:"Instrumental",items:[
-    {prep:"с + instr.",en:"with",case:"Instrumental",ex:"Я пью чай с молоком.",exEn:"I drink tea with milk."},
-    {prep:"за + instr.",en:"behind; at (a table)",case:"Instrumental",ex:"Мы сидим за столом.",exEn:"We are sitting at the table."},
-    {prep:"перед + instr.",en:"in front of/before",case:"Instrumental",ex:"Перед домом есть сад.",exEn:"In front of the house there is a garden."},
-    {prep:"между + instr.",en:"between",case:"Instrumental",ex:"Между нами.",exEn:"Between us."},
-    {prep:"над + instr.",en:"above/over",case:"Instrumental",ex:"Лампа над столом.",exEn:"The lamp is above the table."},
-    {prep:"под + instr.",en:"under/below",case:"Instrumental",ex:"Кошка под столом.",exEn:"The cat is under the table."},
-  ]},
-  {group:"About",items:[
-    {prep:"о / об + prep.",en:"about",case:"Prepositional",ex:"Мы говорим о фильме.",exEn:"We are talking about a film."},
-    {prep:"про + acc.",en:"about (colloquial)",case:"Accusative",ex:"Расскажи мне про свою работу.",exEn:"Tell me about your job."},
-  ]},
-  {group:"Time",items:[
-    {prep:"в + acc.",en:"at (time); on (day)",case:"Accusative",ex:"В понедельник в два часа.",exEn:"On Monday at two o'clock."},
-    {prep:"через + acc.",en:"in (after a period)",case:"Accusative",ex:"Через час.",exEn:"In an hour."},
-    {prep:"назад",en:"ago (after time phrase)",case:"—",ex:"Два года назад.",exEn:"Two years ago."},
-  ]},
+const PREPOSITIONS=[
+{group:"Location vs direction",items:[
+{prep:"в + prep.",en:"in/at (location)",case:"Prepositional",ex:"Я живу́ в Испа́нии.",exEn:"I live in Spain."},
+{prep:"в + acc.",en:"to/into (direction)",case:"Accusative",ex:"Я иду́ в магази́н.",exEn:"I'm going to the shop."},
+{prep:"на + prep.",en:"on/at (location)",case:"Prepositional",ex:"Кни́га на столе́.",exEn:"The book is on the table."},
+{prep:"на + acc.",en:"to/onto (direction)",case:"Accusative",ex:"Я е́ду на рабо́ту.",exEn:"I'm going to work."},
+{prep:"из + gen.",en:"from (out of)",case:"Genitive",ex:"Я из Ирла́ндии.",exEn:"I'm from Ireland."},
+{prep:"с + gen.",en:"from (off of)",case:"Genitive",ex:"Он встал с дива́на.",exEn:"He got up from the sofa."},
+]},
+{group:"Common with genitive",items:[
+{prep:"у + gen.",en:"at/by; possession (у меня́ есть)",case:"Genitive",ex:"У меня́ есть соба́ка.",exEn:"I have a dog."},
+{prep:"без + gen.",en:"without",case:"Genitive",ex:"Ко́фе без са́хара.",exEn:"Coffee without sugar."},
+{prep:"до + gen.",en:"until/before/up to",case:"Genitive",ex:"До встре́чи!",exEn:"See you!"},
+{prep:"по́сле + gen.",en:"after",case:"Genitive",ex:"По́сле рабо́ты я отдыха́ю.",exEn:"After work I rest."},
+{prep:"о́коло + gen.",en:"near/about",case:"Genitive",ex:"О́коло до́ма есть парк.",exEn:"Near the house there is a park."},
+{prep:"от + gen.",en:"from (a person/source)",case:"Genitive",ex:"Письмо́ от ма́мы.",exEn:"A letter from mum."},
+]},
+{group:"Dative",items:[
+{prep:"к + dat.",en:"towards/to (a person)",case:"Dative",ex:"Я иду́ к врачу́.",exEn:"I'm going to the doctor."},
+{prep:"по + dat.",en:"along/around; by (phone/email)",case:"Dative",ex:"Мы гуля́ем по го́роду.",exEn:"We walk around the city."},
+]},
+{group:"Instrumental",items:[
+{prep:"с + instr.",en:"with",case:"Instrumental",ex:"Я пью чай с молоко́м.",exEn:"I drink tea with milk."},
+{prep:"за + instr.",en:"behind; at (a table)",case:"Instrumental",ex:"Мы сиди́м за столо́м.",exEn:"We are sitting at the table."},
+{prep:"пе́ред + instr.",en:"in front of/before",case:"Instrumental",ex:"Пе́ред до́мом есть сад.",exEn:"In front of the house there is a garden."},
+{prep:"ме́жду + instr.",en:"between",case:"Instrumental",ex:"Ме́жду на́ми.",exEn:"Between us."},
+{prep:"над + instr.",en:"above/over",case:"Instrumental",ex:"Ла́мпа над столо́м.",exEn:"The lamp is above the table."},
+{prep:"под + instr.",en:"under/below",case:"Instrumental",ex:"Ко́шка под столо́м.",exEn:"The cat is under the table."},
+]},
+{group:"About",items:[
+{prep:"о / об + prep.",en:"about",case:"Prepositional",ex:"Мы говори́м о фи́льме.",exEn:"We are talking about a film."},
+{prep:"про + acc.",en:"about (colloquial)",case:"Accusative",ex:"Расскажи́ мне про свою́ рабо́ту.",exEn:"Tell me about your job."},
+]},
+{group:"Time",items:[
+{prep:"в + acc.",en:"at (time); on (day)",case:"Accusative",ex:"В понеде́льник в два часа́.",exEn:"On Monday at two o'clock."},
+{prep:"че́рез + acc.",en:"in (after a period)",case:"Accusative",ex:"Че́рез час.",exEn:"In an hour."},
+{prep:"наза́д",en:"ago (after time phrase)",case:"\u2014",ex:"Два го́да наза́д.",exEn:"Two years ago."},
+]},
 ];
 
-const PHRASES = {
-  "About me":[
-    {ru:"Меня зовут...",en:"My name is..."},{ru:"Мне ... лет.",en:"I am ... years old."},
-    {ru:"Я из Ирландии.",en:"I'm from Ireland."},{ru:"Я живу в Испании, в Лас-Пальмасе.",en:"I live in Spain, in Las Palmas."},
-    {ru:"Я переехал сюда в ... году.",en:"I moved here in (year)."},{ru:"Я говорю по-английски, по-испански и немного по-русски.",en:"I speak English, Spanish and a bit of Russian."},
-    {ru:"Я изучаю русский язык.",en:"I study Russian."},{ru:"В свободное время я ...",en:"In my free time I..."},
-    {ru:"Мне нравится бегать / читать / путешествовать.",en:"I like running / reading / travelling."},
-    {ru:"Я интересуюсь языками.",en:"I'm interested in languages."},
-  ],
-  "Family & people":[
-    {ru:"У меня большая / маленькая семья.",en:"I have a big / small family."},
-    {ru:"У меня есть брат / сестра.",en:"I have a brother / sister."},
-    {ru:"У меня нет детей.",en:"I don't have children."},
-    {ru:"Мои родители живут в ...",en:"My parents live in..."},
-    {ru:"Мой брат / моя сестра работает ...",en:"My brother / sister works as..."},
-    {ru:"Мы часто созваниваемся.",en:"We often call each other."},
-    {ru:"Он / она старше / младше меня.",en:"He / she is older / younger than me."},
-    {ru:"У меня есть собака. Её зовут ...",en:"I have a dog. Her name is..."},
-  ],
-  "Work & job":[
-    {ru:"Я работаю в компании ...",en:"I work at the company..."},
-    {ru:"Я работаю удалённо.",en:"I work remotely."},
-    {ru:"Я работаю из коворкинга.",en:"I work from a co-working space."},
-    {ru:"Моя работа связана с ...",en:"My work is connected with..."},
-    {ru:"Я занимаюсь контентом и маркетингом.",en:"I do content and marketing."},
-    {ru:"Я пишу тексты для сайтов.",en:"I write content for websites."},
-    {ru:"Мне нравится моя работа, потому что ...",en:"I like my work because..."},
-    {ru:"Раньше я работал в ...",en:"Before, I used to work at..."},
-    {ru:"Я работаю здесь с ... года.",en:"I've been working here since (year)."},
-  ],
-  "Describing a photo":[
-    {ru:"На фотографии я вижу ...",en:"In the photo I can see..."},
-    {ru:"На переднем плане ...",en:"In the foreground..."},
-    {ru:"На заднем плане ...",en:"In the background..."},
-    {ru:"Слева стоит / сидит ...",en:"On the left stands / sits..."},
-    {ru:"Справа находится ...",en:"On the right is..."},
-    {ru:"В центре фотографии ...",en:"In the centre of the photo..."},
-    {ru:"Мужчина / женщина в чёрной куртке.",en:"A man / woman in a black jacket."},
-    {ru:"Они выглядят счастливыми / уставшими.",en:"They look happy / tired."},
-    {ru:"Мне кажется, что это ...",en:"It seems to me that this is..."},
-    {ru:"Наверное, это происходит летом / зимой.",en:"Probably this is happening in summer / winter."},
-    {ru:"На улице солнечно / пасмурно.",en:"It is sunny / cloudy outside."},
-    {ru:"Я думаю, что они ...",en:"I think that they..."},
-  ],
-  "Opinions & feelings":[
-    {ru:"Мне кажется, что ...",en:"It seems to me that..."},{ru:"Я думаю, что ...",en:"I think that..."},
-    {ru:"Я согласен / согласна.",en:"I agree (m/f)."},{ru:"Я не согласен / не согласна.",en:"I disagree (m/f)."},
-    {ru:"Мне нравится ..., потому что ...",en:"I like ..., because..."},{ru:"Мне не нравится ...",en:"I don't like..."},
-    {ru:"По-моему, ...",en:"In my opinion..."},
-    {ru:"С одной стороны ... с другой стороны ...",en:"On the one hand ... on the other hand..."},
-  ],
+const PHRASES={
+"About me":[
+{ru:"Меня́ зову́т...",en:"My name is..."},{ru:"Мне ... лет.",en:"I am ... years old."},
+{ru:"Я из Ирла́ндии.",en:"I'm from Ireland."},{ru:"Я живу́ в Испа́нии, в Лас-Па́льмасе.",en:"I live in Spain, in Las Palmas."},
+{ru:"Я перее́хал сюда́ в ... году́.",en:"I moved here in (year)."},{ru:"Я говорю́ по-англи́йски, по-испа́нски и немно́го по-ру́сски.",en:"I speak English, Spanish and a bit of Russian."},
+{ru:"Я изуча́ю ру́сский язы́к.",en:"I study Russian."},{ru:"В свобо́дное вре́мя я ...",en:"In my free time I..."},
+{ru:"Мне нра́вится бе́гать / чита́ть / путеше́ствовать.",en:"I like running / reading / travelling."},
+{ru:"Я интересу́юсь языка́ми.",en:"I'm interested in languages."},
+],
+"Family & people":[
+{ru:"У меня́ больша́я / ма́ленькая семья́.",en:"I have a big / small family."},
+{ru:"У меня́ есть брат / сестра́.",en:"I have a brother / sister."},
+{ru:"У меня́ нет дете́й.",en:"I don't have children."},
+{ru:"Мои́ роди́тели живу́т в ...",en:"My parents live in..."},
+{ru:"Мой брат / моя́ сестра́ рабо́тает ...",en:"My brother / sister works as..."},
+{ru:"Мы ча́сто созва́ниваемся.",en:"We often call each other."},
+{ru:"Он / она́ ста́рше / мла́дше меня́.",en:"He / she is older / younger than me."},
+{ru:"У меня́ есть соба́ка. Её зову́т ...",en:"I have a dog. Her name is..."},
+],
+"Work & job":[
+{ru:"Я рабо́таю в компа́нии ...",en:"I work at the company..."},
+{ru:"Я рабо́таю удалённо.",en:"I work remotely."},
+{ru:"Я рабо́таю из ково́ркинга.",en:"I work from a co-working space."},
+{ru:"Моя́ рабо́та свя́зана с ...",en:"My work is connected with..."},
+{ru:"Я занима́юсь конте́нтом и ма́ркетингом.",en:"I do content and marketing."},
+{ru:"Я пишу́ те́ксты для са́йтов.",en:"I write content for websites."},
+{ru:"Мне нра́вится моя́ рабо́та, потому́ что ...",en:"I like my work because..."},
+{ru:"Ра́ньше я рабо́тал в ...",en:"Before, I used to work at..."},
+{ru:"Я рабо́таю здесь с ... го́да.",en:"I've been working here since (year)."},
+],
+"Describing a photo":[
+{ru:"На фотогра́фии я ви́жу ...",en:"In the photo I can see..."},
+{ru:"На пере́днем пла́не ...",en:"In the foreground..."},
+{ru:"На за́днем пла́не ...",en:"In the background..."},
+{ru:"Сле́ва стои́т / сиди́т ...",en:"On the left stands / sits..."},
+{ru:"Спра́ва нахо́дится ...",en:"On the right is..."},
+{ru:"В це́нтре фотогра́фии ...",en:"In the centre of the photo..."},
+{ru:"Мужчи́на / же́нщина в чёрной ку́ртке.",en:"A man / woman in a black jacket."},
+{ru:"Они́ вы́глядят счастли́выми / уста́вшими.",en:"They look happy / tired."},
+{ru:"Мне ка́жется, что э́то ...",en:"It seems to me that this is..."},
+{ru:"Наве́рное, э́то происхо́дит ле́том / зимо́й.",en:"Probably this is happening in summer / winter."},
+{ru:"На у́лице со́лнечно / па́смурно.",en:"It is sunny / cloudy outside."},
+{ru:"Я ду́маю, что они́ ...",en:"I think that they..."},
+],
+"Opinions & feelings":[
+{ru:"Мне ка́жется, что ...",en:"It seems to me that..."},{ru:"Я ду́маю, что ...",en:"I think that..."},
+{ru:"Я согла́сен / согла́сна.",en:"I agree (m/f)."},{ru:"Я не согла́сен / не согла́сна.",en:"I disagree (m/f)."},
+{ru:"Мне нра́вится ..., потому́ что ...",en:"I like ..., because..."},{ru:"Мне не нра́вится ...",en:"I don't like..."},
+{ru:"По-мо́ему, ...",en:"In my opinion..."},
+{ru:"С одно́й стороны́ ... с друго́й стороны́ ...",en:"On the one hand ... on the other hand..."},
+],
 };
 
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
+function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 
-const TABS = ["Vocab","Verbs","Cases","Preps","Phrases","Quiz"];
+const TABS=["Vocab","Verbs","Cases","Preps","Phrases","Quiz"];
 
-function VocabSection() {
-  const [cat, setCat] = useState(Object.keys(VOCAB)[0]);
-  const [revealed, setRevealed] = useState({});
-  const toggle = i => setRevealed(r => ({...r, [i]: !r[i]}));
-  const revealAll = () => { const all = {}; VOCAB[cat].forEach((_,i) => all[i] = true); setRevealed(all); };
+function VocabSection(){
+const[cat,setCat]=useState(Object.keys(VOCAB)[0]);
+const[revealed,setRevealed]=useState({});
+const toggle=i=>setRevealed(r=>({...r,[i]:!r[i]}));
+const revealAll=()=>{const all={};VOCAB[cat].forEach((_,i)=>all[i]=true);setRevealed(all)};
+return e('div',null,
+e('div',{className:'pill-bar'},Object.keys(VOCAB).map(c=>e('button',{key:c,className:'pill'+(c===cat?' active':''),onClick:()=>{setCat(c);setRevealed({})}},c))),
+e('div',{style:{display:'flex',justifyContent:'flex-end',marginBottom:8}},e('button',{className:'btn-ghost',onClick:revealAll},'Reveal all')),
+e('div',{style:{display:'flex',flexDirection:'column',gap:4}},VOCAB[cat].map((w,i)=>e('div',{key:i,className:'vocab-row',onClick:()=>toggle(i)},e('span',{className:'ru'},w.ru),e('span',{className:'en',style:{color:revealed[i]?'var(--text)':'transparent'}},w.en))))
+)}
 
-  return e('div', null,
-    e('div', {className:'pill-bar'}, Object.keys(VOCAB).map(c =>
-      e('button', {key:c, className:'pill'+(c===cat?' active':''), onClick:()=>{setCat(c);setRevealed({})}}, c)
-    )),
-    e('div', {style:{display:'flex',justifyContent:'flex-end',marginBottom:8}},
-      e('button', {className:'btn-ghost', onClick:revealAll}, 'Reveal all')
-    ),
-    e('div', {style:{display:'flex',flexDirection:'column',gap:4}},
-      VOCAB[cat].map((w,i) =>
-        e('div', {key:i, className:'vocab-row', onClick:()=>toggle(i)},
-          e('span', {className:'ru'}, w.ru),
-          e('span', {className:'en', style:{color:revealed[i]?'var(--text)':'transparent'}}, w.en)
-        )
-      )
-    )
-  );
-}
+function VerbSection(){
+const[idx,setIdx]=useState(0);
+const v=VERBS[idx];
+const cf={"я":"бу́ду","ты":"бу́дешь","он/она":"бу́дет","мы":"бу́дем","вы":"бу́дете","они":"бу́дут"};
+const tenseCard=(label,rows)=>e('div',{className:'card'},e('div',{className:'label-sm'},label),...rows.map(([k,val])=>e('div',{key:k,className:'row'},e('span',{className:'row-label'},k),e('span',{className:'row-value'},val))));
+return e('div',null,
+e('div',{style:{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:16}},
+e('button',{className:'btn-secondary',disabled:idx===0,onClick:()=>setIdx(idx-1),style:{opacity:idx===0?.3:1}},'←'),
+e('span',{style:{fontSize:13,color:'var(--text-muted)'}},`${idx+1} / ${VERBS.length}`),
+e('button',{className:'btn-secondary',disabled:idx===VERBS.length-1,onClick:()=>setIdx(idx+1),style:{opacity:idx===VERBS.length-1?.3:1}},'→')),
+e('div',{className:'card card-lg'},
+e('div',{style:{fontSize:22,fontWeight:600,marginBottom:2}},v.inf),
+e('div',{style:{fontSize:15,color:'var(--text-muted)',marginBottom:4}},`${v.en} \u00b7 ${v.aspect==='impf'?'imperfective':'perfective'}`),
+e('div',{style:{fontSize:13,color:'var(--accent)',lineHeight:1.5}},v.note)),
+v.present?tenseCard('Present',Object.entries(v.present)):null,
+v.aspect==='impf'&&v.inf!=='быть'?tenseCard('Future (compound)',Object.entries(cf).map(([p,f])=>[p,`${f} ${v.inf}`])):null,
+v.future?tenseCard('Future (perfective)',Object.entries(v.future)):null,
+v.inf==='быть'?tenseCard('Future',Object.entries(cf)):null,
+tenseCard('Past',Object.entries(v.past)),
+e('div',{style:{display:'flex',flexWrap:'wrap',gap:4,marginTop:14}},VERBS.map((_,i)=>e('button',{key:i,className:'nav-dot'+(i===idx?' active':''),onClick:()=>setIdx(i)},i+1)))
+)}
 
-function VerbSection() {
-  const [idx, setIdx] = useState(0);
-  const v = VERBS[idx];
-  const compoundFuture = {"я":"буду","ты":"будешь","он/она":"будет","мы":"будем","вы":"будете","они":"будут"};
+function CaseSection(){
+const[idx,setIdx]=useState(0);const c=CASES[idx];
+return e('div',null,
+e('div',{className:'pill-bar'},CASES.map((cs,i)=>e('button',{key:i,className:'pill'+(i===idx?' active':''),onClick:()=>setIdx(i)},cs.name))),
+e('div',{className:'card card-lg'},e('div',{style:{fontSize:20,fontWeight:600}},c.name),e('div',{style:{fontSize:15,color:'var(--text-muted)'}},`${c.ru} \u00b7 ${c.question}`),e('div',{style:{marginTop:10,fontSize:14,lineHeight:1.6}},c.use)),
+e('div',{className:'card'},e('div',{className:'label-sm'},'Typical endings'),...Object.entries(c.endings).map(([t,end])=>e('div',{key:t,className:'row'},e('span',{className:'row-label',style:{fontSize:13}},t),e('span',{className:'row-value',style:{fontFamily:'monospace'}},end)))),
+e('div',{className:'card'},e('div',{className:'label-sm'},'Examples'),...c.examples.map((ex,i)=>e('div',{key:i,style:{padding:'6px 0',fontSize:15,borderBottom:i<c.examples.length-1?'1px solid var(--border)':'none'}},ex)))
+)}
 
-  return e('div', null,
-    e('div', {style:{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:16}},
-      e('button', {className:'btn-secondary', disabled:idx===0, onClick:()=>setIdx(idx-1), style:{opacity:idx===0?0.3:1}}, '←'),
-      e('span', {style:{fontSize:13,color:'var(--text-muted)'}}, `${idx+1} / ${VERBS.length}`),
-      e('button', {className:'btn-secondary', disabled:idx===VERBS.length-1, onClick:()=>setIdx(idx+1), style:{opacity:idx===VERBS.length-1?0.3:1}}, '→'),
-    ),
-    e('div', {className:'card card-lg'},
-      e('div', {style:{fontSize:22,fontWeight:600,marginBottom:2}}, v.inf),
-      e('div', {style:{fontSize:15,color:'var(--text-muted)',marginBottom:4}}, `${v.en} · ${v.aspect==='impf'?'imperfective':'perfective'}`),
-      e('div', {style:{fontSize:13,color:'var(--accent)',lineHeight:1.5}}, v.note),
-    ),
-    v.present && e('div', {className:'card'},
-      e('div', {className:'label-sm'}, 'Present'),
-      ...Object.entries(v.present).map(([p,f]) =>
-        e('div', {key:p, className:'row'}, e('span',{className:'row-label'},p), e('span',{className:'row-value'},f))
-      )
-    ),
-    v.aspect === 'impf' && v.inf !== 'быть' ? e('div', {className:'card'},
-      e('div', {className:'label-sm'}, 'Future (compound)'),
-      ...Object.entries(compoundFuture).map(([p,f]) =>
-        e('div', {key:p, className:'row'}, e('span',{className:'row-label'},p), e('span',{className:'row-value'},`${f} ${v.inf}`))
-      )
-    ) : null,
-    v.future ? e('div', {className:'card'},
-      e('div', {className:'label-sm'}, 'Future (perfective)'),
-      ...Object.entries(v.future).map(([p,f]) =>
-        e('div', {key:p, className:'row'}, e('span',{className:'row-label'},p), e('span',{className:'row-value'},f))
-      )
-    ) : null,
-    v.inf === 'быть' ? e('div', {className:'card'},
-      e('div', {className:'label-sm'}, 'Future'),
-      ...Object.entries(compoundFuture).map(([p,f]) =>
-        e('div', {key:p, className:'row'}, e('span',{className:'row-label'},p), e('span',{className:'row-value'},f))
-      )
-    ) : null,
-    e('div', {className:'card'},
-      e('div', {className:'label-sm'}, 'Past'),
-      ...Object.entries(v.past).map(([g,f]) =>
-        e('div', {key:g, className:'row'}, e('span',{className:'row-label'},g), e('span',{className:'row-value'},f))
-      )
-    ),
-    e('div', {style:{display:'flex',flexWrap:'wrap',gap:4,marginTop:14}},
-      VERBS.map((_,i) => e('button', {key:i, className:'nav-dot'+(i===idx?' active':''), onClick:()=>setIdx(i)}, i+1))
-    )
-  );
-}
+function PrepositionSection(){
+const[gi,setGi]=useState(0);const[revealed,setRevealed]=useState({});const group=PREPOSITIONS[gi];
+const toggle=i=>setRevealed(r=>({...r,[i]:!r[i]}));
+return e('div',null,
+e('div',{className:'pill-bar'},PREPOSITIONS.map((g,i)=>e('button',{key:i,className:'pill'+(i===gi?' active':''),onClick:()=>{setGi(i);setRevealed({})}},g.group))),
+e('div',{style:{display:'flex',flexDirection:'column',gap:8}},group.items.map((item,i)=>e('div',{key:i,className:'prep-card',onClick:()=>toggle(i)},
+e('div',{className:'prep-header'},e('span',{className:'prep'},item.prep),e('span',{className:'case'},item.case)),
+e('div',{className:'prep-meaning'},item.en),
+e('div',{className:'prep-example',style:{maxHeight:revealed[i]?100:0,opacity:revealed[i]?1:0,marginTop:revealed[i]?8:0,padding:revealed[i]?'8px 10px':'0 10px'}},e('div',{className:'ex'},item.ex),e('div',{className:'exen'},item.exEn)))))
+)}
 
-function CaseSection() {
-  const [idx, setIdx] = useState(0);
-  const c = CASES[idx];
-  return e('div', null,
-    e('div', {className:'pill-bar'}, CASES.map((cs,i) =>
-      e('button', {key:i, className:'pill'+(i===idx?' active':''), onClick:()=>setIdx(i)}, cs.name)
-    )),
-    e('div', {className:'card card-lg'},
-      e('div', {style:{fontSize:20,fontWeight:600}}, c.name),
-      e('div', {style:{fontSize:15,color:'var(--text-muted)'}}, `${c.ru} · ${c.question}`),
-      e('div', {style:{marginTop:10,fontSize:14,lineHeight:1.6}}, c.use),
-    ),
-    e('div', {className:'card'},
-      e('div', {className:'label-sm'}, 'Typical endings'),
-      ...Object.entries(c.endings).map(([t,end]) =>
-        e('div', {key:t, className:'row'}, e('span',{className:'row-label',style:{fontSize:13}},t), e('span',{className:'row-value',style:{fontFamily:'monospace'}},end))
-      )
-    ),
-    e('div', {className:'card'},
-      e('div', {className:'label-sm'}, 'Examples'),
-      ...c.examples.map((ex,i) =>
-        e('div', {key:i, style:{padding:'6px 0',fontSize:15,borderBottom:i<c.examples.length-1?'1px solid var(--border)':'none'}}, ex)
-      )
-    ),
-  );
-}
+function PhrasesSection(){
+const[cat,setCat]=useState(Object.keys(PHRASES)[0]);const[revealed,setRevealed]=useState({});
+const toggle=i=>setRevealed(r=>({...r,[i]:!r[i]}));
+return e('div',null,
+e('div',{className:'pill-bar'},Object.keys(PHRASES).map(c=>e('button',{key:c,className:'pill'+(c===cat?' active':''),onClick:()=>{setCat(c);setRevealed({})}},c))),
+e('p',{style:{fontSize:13,color:'var(--text-muted)',marginBottom:12}},'Tap to reveal the English.'),
+e('div',{style:{display:'flex',flexDirection:'column',gap:6}},PHRASES[cat].map((p,i)=>e('div',{key:i,className:'phrase-card',onClick:()=>toggle(i)},
+e('div',{className:'ru'},p.ru),e('div',{className:'en',style:{maxHeight:revealed[i]?60:0,opacity:revealed[i]?1:0,marginTop:revealed[i]?6:0}},p.en))))
+)}
 
-function PrepositionSection() {
-  const [gi, setGi] = useState(0);
-  const [revealed, setRevealed] = useState({});
-  const group = PREPOSITIONS[gi];
-  const toggle = i => setRevealed(r => ({...r, [i]: !r[i]}));
+function QuizSection(){
+const allVocab=useMemo(()=>Object.values(VOCAB).flat(),[]);
+const allPreps=useMemo(()=>PREPOSITIONS.flatMap(g=>g.items),[]);
+const[mode,setMode]=useState(null);const[questions,setQuestions]=useState([]);
+const[qIdx,setQIdx]=useState(0);const[selected,setSelected]=useState(null);
+const[score,setScore]=useState(0);const[finished,setFinished]=useState(false);const QCOUNT=15;
+const startQuiz=useCallback(m=>{
+setMode(m);setScore(0);setQIdx(0);setSelected(null);setFinished(false);
+if(m==="vocab"){const sh=shuffle(allVocab).slice(0,QCOUNT);setQuestions(sh.map(w=>{const dir=Math.random()>.5?"ru2en":"en2ru";const correct=dir==="ru2en"?w.en:w.ru;const prompt=dir==="ru2en"?w.ru:w.en;const field=dir==="ru2en"?"en":"ru";const wrongs=shuffle(allVocab.filter(x=>x!==w)).slice(0,3).map(x=>x[field]);return{prompt,correct,options:shuffle([correct,...wrongs])}}))}
+else if(m==="verbs"){const verbs=shuffle(VERBS.filter(v=>v.present||v.future)).slice(0,QCOUNT);const pronouns=["я","ты","он/она","мы","вы","они"];setQuestions(verbs.map(v=>{const t=v.present||v.future;const avail=pronouns.filter(p=>t[p]);const pron=avail[Math.floor(Math.random()*avail.length)];const correct=t[pron];const extras=shuffle(VERBS.filter(vv=>vv!==v&&(vv.present||vv.future))).slice(0,3).map(vv=>{const tt=vv.present||vv.future;const vals=Object.values(tt);return vals[Math.floor(Math.random()*vals.length)]});return{prompt:`${v.inf} \u2192 ${pron}`,correct,options:shuffle([correct,...extras.filter(f=>f!==correct).slice(0,3)])}}))}
+else if(m==="cases"){const qs=[];for(let i=0;i<QCOUNT;i++){const c=CASES[Math.floor(Math.random()*CASES.length)];if(Math.random()>.5){const wrongs=shuffle(CASES.filter(x=>x!==c)).slice(0,3).map(x=>x.name);qs.push({prompt:`Which case answers: ${c.question}?`,correct:c.name,options:shuffle([c.name,...wrongs])})}else{const ex=c.examples[Math.floor(Math.random()*c.examples.length)];const wrongs=shuffle(CASES.filter(x=>x!==c)).slice(0,3).map(x=>x.name);qs.push({prompt:`Which case: \u201c${ex}\u201d`,correct:c.name,options:shuffle([c.name,...wrongs])})}}setQuestions(shuffle(qs))}
+else if(m==="preps"){const sh=shuffle(allPreps).slice(0,QCOUNT);setQuestions(sh.map(p=>{if(Math.random()>.5){const wrongs=shuffle(allPreps.filter(x=>x!==p)).slice(0,3).map(x=>x.en);return{prompt:p.prep,correct:p.en,options:shuffle([p.en,...wrongs])}}else{const allC=["Genitive","Dative","Accusative","Instrumental","Prepositional"];const wrongs=shuffle(allC.filter(c=>c!==p.case)).slice(0,3);return{prompt:`${p.prep} takes which case?`,correct:p.case,options:shuffle([p.case,...wrongs])}}}))}
+},[allVocab,allPreps]);
+const handleSelect=opt=>{if(selected!==null)return;setSelected(opt);if(opt===questions[qIdx].correct)setScore(s=>s+1)};
+const next=()=>{if(qIdx+1>=questions.length)setFinished(true);else{setQIdx(qIdx+1);setSelected(null)}};
+if(!mode)return e('div',null,
+e('p',{style:{color:'var(--text-muted)',marginBottom:16,fontSize:14}},`${QCOUNT} questions, multiple choice. Pick a topic:`),
+[{id:"vocab",label:"Vocabulary",desc:"Translate words both directions"},{id:"verbs",label:"Verb conjugations",desc:"Pick the right form for the pronoun"},{id:"cases",label:"Cases",desc:"Identify the case from questions and examples"},{id:"preps",label:"Prepositions",desc:"Meanings and which case they take"}].map(m=>e('button',{key:m.id,onClick:()=>startQuiz(m.id),style:{display:'block',width:'100%',padding:'14px 16px',marginBottom:8,borderRadius:8,border:'none',background:'var(--bg-card)',cursor:'pointer',textAlign:'left'}},e('div',{style:{fontWeight:600,fontSize:15}},m.label),e('div',{style:{fontSize:13,color:'var(--text-muted)',marginTop:2}},m.desc))));
+if(finished){const pct=Math.round((score/questions.length)*100);const msg=pct>=90?"Solid.":pct>=70?"Getting there. Run it again.":pct>=50?"Some gaps. Review and retry.":"Worth going back to the reference sections.";
+return e('div',{style:{textAlign:'center',padding:'32px 0'}},e('div',{style:{fontSize:40,fontWeight:700,marginBottom:4}},`${score}/${questions.length}`),e('div',{style:{fontSize:16,color:'var(--text-muted)',marginBottom:4}},`${pct}%`),e('div',{style:{fontSize:15,color:'var(--text-muted)',marginBottom:20}},msg),e('div',{style:{display:'flex',gap:8,justifyContent:'center'}},e('button',{className:'btn-primary',style:{width:'auto',padding:'10px 20px'},onClick:()=>startQuiz(mode)},'Again'),e('button',{className:'btn-secondary',onClick:()=>setMode(null)},'Change topic')))}
+const q=questions[qIdx];
+return e('div',null,
+e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:16}},e('span',{style:{fontSize:13,color:'var(--text-muted)'}},`${qIdx+1} / ${questions.length}`),e('span',{style:{fontSize:13,color:'var(--text-muted)'}},`${score} correct`)),
+e('div',{className:'card',style:{padding:16,marginBottom:14}},e('div',{style:{fontSize:18,fontWeight:600}},q.prompt)),
+e('div',{style:{display:'flex',flexDirection:'column',gap:6}},q.options.map((opt,i)=>{let cls='quiz-option';if(selected!==null){cls+=' locked';if(opt===q.correct)cls+=' correct';else if(opt===selected)cls+=' wrong'}return e('button',{key:i,className:cls,onClick:()=>handleSelect(opt)},opt)})),
+selected!==null&&e('button',{className:'btn-primary',style:{marginTop:14},onClick:next},qIdx+1>=questions.length?'See results':'Next'),
+e('button',{className:'btn-ghost',style:{marginTop:8,width:'100%'},onClick:()=>{setMode(null);setSelected(null)}},'\u2190 Back to topics')
+)}
 
-  return e('div', null,
-    e('div', {className:'pill-bar'}, PREPOSITIONS.map((g,i) =>
-      e('button', {key:i, className:'pill'+(i===gi?' active':''), onClick:()=>{setGi(i);setRevealed({})}}, g.group)
-    )),
-    e('div', {style:{display:'flex',flexDirection:'column',gap:8}},
-      group.items.map((item,i) =>
-        e('div', {key:i, className:'prep-card', onClick:()=>toggle(i)},
-          e('div', {className:'prep-header'},
-            e('span', {className:'prep'}, item.prep),
-            e('span', {className:'case'}, item.case),
-          ),
-          e('div', {className:'prep-meaning'}, item.en),
-          e('div', {className:'prep-example', style:{maxHeight:revealed[i]?100:0,opacity:revealed[i]?1:0,marginTop:revealed[i]?8:0,padding:revealed[i]?'8px 10px':'0 10px'}},
-            e('div', {className:'ex'}, item.ex),
-            e('div', {className:'exen'}, item.exEn),
-          ),
-        )
-      )
-    )
-  );
-}
-
-function PhrasesSection() {
-  const [cat, setCat] = useState(Object.keys(PHRASES)[0]);
-  const [revealed, setRevealed] = useState({});
-  const toggle = i => setRevealed(r => ({...r, [i]: !r[i]}));
-
-  return e('div', null,
-    e('div', {className:'pill-bar'}, Object.keys(PHRASES).map(c =>
-      e('button', {key:c, className:'pill'+(c===cat?' active':''), onClick:()=>{setCat(c);setRevealed({})}}, c)
-    )),
-    e('p', {style:{fontSize:13,color:'var(--text-muted)',marginBottom:12}}, 'Tap to reveal the English.'),
-    e('div', {style:{display:'flex',flexDirection:'column',gap:6}},
-      PHRASES[cat].map((p,i) =>
-        e('div', {key:i, className:'phrase-card', onClick:()=>toggle(i)},
-          e('div', {className:'ru'}, p.ru),
-          e('div', {className:'en', style:{maxHeight:revealed[i]?60:0,opacity:revealed[i]?1:0,marginTop:revealed[i]?6:0}}, p.en),
-        )
-      )
-    )
-  );
-}
-
-function QuizSection() {
-  const allVocab = useMemo(() => Object.values(VOCAB).flat(), []);
-  const allPreps = useMemo(() => PREPOSITIONS.flatMap(g => g.items), []);
-  const [mode, setMode] = useState(null);
-  const [questions, setQuestions] = useState([]);
-  const [qIdx, setQIdx] = useState(0);
-  const [selected, setSelected] = useState(null);
-  const [score, setScore] = useState(0);
-  const [finished, setFinished] = useState(false);
-  const QCOUNT = 15;
-
-  const startQuiz = useCallback(m => {
-    setMode(m); setScore(0); setQIdx(0); setSelected(null); setFinished(false);
-    if (m === "vocab") {
-      const shuffled = shuffle(allVocab).slice(0, QCOUNT);
-      setQuestions(shuffled.map(w => {
-        const dir = Math.random() > 0.5 ? "ru2en" : "en2ru";
-        const correct = dir === "ru2en" ? w.en : w.ru;
-        const prompt = dir === "ru2en" ? w.ru : w.en;
-        const field = dir === "ru2en" ? "en" : "ru";
-        const wrongs = shuffle(allVocab.filter(x => x !== w)).slice(0,3).map(x => x[field]);
-        return {prompt, correct, options: shuffle([correct, ...wrongs])};
-      }));
-    } else if (m === "verbs") {
-      const verbs = shuffle(VERBS.filter(v => v.present || v.future)).slice(0, QCOUNT);
-      const pronouns = ["я","ты","он/она","мы","вы","они"];
-      setQuestions(verbs.map(v => {
-        const t = v.present || v.future;
-        const avail = pronouns.filter(p => t[p]);
-        const pron = avail[Math.floor(Math.random() * avail.length)];
-        const correct = t[pron];
-        const extras = shuffle(VERBS.filter(vv => vv !== v && (vv.present || vv.future))).slice(0,3).map(vv => {
-          const tt = vv.present || vv.future; const vals = Object.values(tt);
-          return vals[Math.floor(Math.random() * vals.length)];
-        });
-        return {prompt:`${v.inf} → ${pron}`, correct, options: shuffle([correct, ...extras.filter(f=>f!==correct).slice(0,3)])};
-      }));
-    } else if (m === "cases") {
-      const qs = [];
-      for (let i = 0; i < QCOUNT; i++) {
-        const c = CASES[Math.floor(Math.random() * CASES.length)];
-        if (Math.random() > 0.5) {
-          const wrongs = shuffle(CASES.filter(x=>x!==c)).slice(0,3).map(x=>x.name);
-          qs.push({prompt:`Which case answers: ${c.question}?`, correct:c.name, options:shuffle([c.name,...wrongs])});
-        } else {
-          const ex = c.examples[Math.floor(Math.random()*c.examples.length)];
-          const wrongs = shuffle(CASES.filter(x=>x!==c)).slice(0,3).map(x=>x.name);
-          qs.push({prompt:`Which case: "${ex}"`, correct:c.name, options:shuffle([c.name,...wrongs])});
-        }
-      }
-      setQuestions(shuffle(qs));
-    } else if (m === "preps") {
-      const shuffled = shuffle(allPreps).slice(0, QCOUNT);
-      setQuestions(shuffled.map(p => {
-        if (Math.random() > 0.5) {
-          const wrongs = shuffle(allPreps.filter(x=>x!==p)).slice(0,3).map(x=>x.en);
-          return {prompt:p.prep, correct:p.en, options:shuffle([p.en,...wrongs])};
-        } else {
-          const allC = ["Genitive","Dative","Accusative","Instrumental","Prepositional"];
-          const wrongs = shuffle(allC.filter(c=>c!==p.case)).slice(0,3);
-          return {prompt:`${p.prep} takes which case?`, correct:p.case, options:shuffle([p.case,...wrongs])};
-        }
-      }));
-    }
-  }, [allVocab, allPreps]);
-
-  const handleSelect = opt => {
-    if (selected !== null) return;
-    setSelected(opt);
-    if (opt === questions[qIdx].correct) setScore(s => s + 1);
-  };
-
-  const next = () => {
-    if (qIdx + 1 >= questions.length) setFinished(true);
-    else { setQIdx(qIdx + 1); setSelected(null); }
-  };
-
-  if (!mode) {
-    return e('div', null,
-      e('p', {style:{color:'var(--text-muted)',marginBottom:16,fontSize:14}}, `${QCOUNT} questions, multiple choice. Pick a topic:`),
-      [{id:"vocab",label:"Vocabulary",desc:"Translate words both directions"},
-       {id:"verbs",label:"Verb conjugations",desc:"Pick the right form for the pronoun"},
-       {id:"cases",label:"Cases",desc:"Identify the case from questions and examples"},
-       {id:"preps",label:"Prepositions",desc:"Meanings and which case they take"},
-      ].map(m => e('button', {key:m.id, onClick:()=>startQuiz(m.id),
-        style:{display:'block',width:'100%',padding:'14px 16px',marginBottom:8,borderRadius:8,border:'none',background:'var(--bg-card)',cursor:'pointer',textAlign:'left'}},
-        e('div', {style:{fontWeight:600,fontSize:15}}, m.label),
-        e('div', {style:{fontSize:13,color:'var(--text-muted)',marginTop:2}}, m.desc),
-      ))
-    );
-  }
-
-  if (finished) {
-    const pct = Math.round((score / questions.length) * 100);
-    const msg = pct >= 90 ? "Solid." : pct >= 70 ? "Getting there. Run it again." : pct >= 50 ? "Some gaps. Review and retry." : "Worth going back to the reference sections.";
-    return e('div', {style:{textAlign:'center',padding:'32px 0'}},
-      e('div', {style:{fontSize:40,fontWeight:700,marginBottom:4}}, `${score}/${questions.length}`),
-      e('div', {style:{fontSize:16,color:'var(--text-muted)',marginBottom:4}}, `${pct}%`),
-      e('div', {style:{fontSize:15,color:'var(--text-muted)',marginBottom:20}}, msg),
-      e('div', {style:{display:'flex',gap:8,justifyContent:'center'}},
-        e('button', {className:'btn-primary', style:{width:'auto',padding:'10px 20px'}, onClick:()=>startQuiz(mode)}, 'Again'),
-        e('button', {className:'btn-secondary', onClick:()=>setMode(null)}, 'Change topic'),
-      )
-    );
-  }
-
-  const q = questions[qIdx];
-  return e('div', null,
-    e('div', {style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:16}},
-      e('span', {style:{fontSize:13,color:'var(--text-muted)'}}, `${qIdx+1} / ${questions.length}`),
-      e('span', {style:{fontSize:13,color:'var(--text-muted)'}}, `${score} correct`),
-    ),
-    e('div', {className:'card', style:{padding:16,marginBottom:14}},
-      e('div', {style:{fontSize:18,fontWeight:600}}, q.prompt),
-    ),
-    e('div', {style:{display:'flex',flexDirection:'column',gap:6}},
-      q.options.map((opt,i) => {
-        let cls = 'quiz-option';
-        if (selected !== null) {
-          cls += ' locked';
-          if (opt === q.correct) cls += ' correct';
-          else if (opt === selected) cls += ' wrong';
-        }
-        return e('button', {key:i, className:cls, onClick:()=>handleSelect(opt)}, opt);
-      })
-    ),
-    selected !== null && e('button', {className:'btn-primary', style:{marginTop:14}, onClick:next},
-      qIdx + 1 >= questions.length ? 'See results' : 'Next'
-    ),
-    e('button', {className:'btn-ghost', style:{marginTop:8,width:'100%'}, onClick:()=>{setMode(null);setSelected(null)}}, '← Back to topics'),
-  );
-}
-
-function App() {
-  const [tab, setTab] = useState(0);
-  return e('div', {id:'root-inner'},
-    e('div', {className:'header', style:{marginBottom:20}},
-      e('h1', null, 'Русский: Crash Course'),
-      e('p', null, 'Prueba de nivel prep'),
-    ),
-    e('div', {className:'tab-bar'},
-      TABS.map((t,i) => e('button', {key:t, className:'tab-btn'+(i===tab?' active':''), onClick:()=>setTab(i)}, t))
-    ),
-    tab === 0 && e(VocabSection),
-    tab === 1 && e(VerbSection),
-    tab === 2 && e(CaseSection),
-    tab === 3 && e(PrepositionSection),
-    tab === 4 && e(PhrasesSection),
-    tab === 5 && e(QuizSection),
-  );
-}
-
+function App(){
+const[tab,setTab]=useState(0);
+return e('div',{id:'root-inner'},
+e('div',{className:'header',style:{marginBottom:20}},e('h1',null,'\u0420\u0443\u0441\u0441\u043a\u0438\u0439: Crash Course'),e('p',null,'Prueba de nivel prep')),
+e('div',{className:'tab-bar'},TABS.map((t,i)=>e('button',{key:t,className:'tab-btn'+(i===tab?' active':''),onClick:()=>setTab(i)},t))),
+tab===0&&e(VocabSection),tab===1&&e(VerbSection),tab===2&&e(CaseSection),tab===3&&e(PrepositionSection),tab===4&&e(PhrasesSection),tab===5&&e(QuizSection)
+)}
 ReactDOM.createRoot(document.getElementById('root')).render(e(App));
 </script>
 </body>
