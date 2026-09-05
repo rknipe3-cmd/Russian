@@ -326,20 +326,20 @@ const[mode,setMode]=useState(null);const[questions,setQuestions]=useState([]);
 const[qIdx,setQIdx]=useState(0);const[selected,setSelected]=useState(null);
 const[score,setScore]=useState(0);const[finished,setFinished]=useState(false);
 const[missed,setMissed]=useState([]);const[isRetry,setIsRetry]=useState(false);
-const[vocabPick,setVocabPick]=useState(null);
+const[vocabPick,setVocabPick]=useState(null);const[vocabDir,setVocabDir]=useState(null);
 const QCOUNT=15;
 const vocabCats=Object.keys(VOCAB);
-const startVocabQuiz=useCallback(cat=>{
+const startVocabQuiz=useCallback((cat,dir)=>{
 const pool=cat==="All"?allVocab:VOCAB[cat];
 const wrongPool=allVocab;
 const count=Math.min(QCOUNT,pool.length);
 const sh=shuffle(pool).slice(0,count);
-setMode("vocab");setScore(0);setQIdx(0);setSelected(null);setFinished(false);setMissed([]);setIsRetry(false);setVocabPick(cat);
-setQuestions(sh.map(w=>{const dir=Math.random()>.5?"ru2en":"en2ru";const correct=dir==="ru2en"?w.en:w.ru;const prompt=dir==="ru2en"?w.ru:w.en;const field=dir==="ru2en"?"en":"ru";const wrongs=shuffle(wrongPool.filter(x=>x!==w)).slice(0,3).map(x=>x[field]);return{prompt,correct,options:shuffle([correct,...wrongs])}}));
+setMode("vocab");setScore(0);setQIdx(0);setSelected(null);setFinished(false);setMissed([]);setIsRetry(false);setVocabPick(cat);setVocabDir(dir);
+setQuestions(sh.map(w=>{const d=dir==="mixed"?(Math.random()>.5?"ru2en":"en2ru"):dir;const correct=d==="ru2en"?w.en:w.ru;const prompt=d==="ru2en"?w.ru:w.en;const field=d==="ru2en"?"en":"ru";const wrongs=shuffle(wrongPool.filter(x=>x!==w)).slice(0,3).map(x=>x[field]);return{prompt,correct,options:shuffle([correct,...wrongs])}}));
 },[allVocab]);
 const startQuiz=useCallback(m=>{
-if(m==="vocab"){setVocabPick("picking");return}
-setMode(m);setScore(0);setQIdx(0);setSelected(null);setFinished(false);setMissed([]);setIsRetry(false);setVocabPick(null);
+if(m==="vocab"){setVocabPick("picking");setVocabDir(null);return}
+setMode(m);setScore(0);setQIdx(0);setSelected(null);setFinished(false);setMissed([]);setIsRetry(false);setVocabPick(null);setVocabDir(null);
 if(m==="verbs"){const verbs=shuffle(VERBS.filter(v=>v.present||v.future)).slice(0,QCOUNT);const pronouns=["я","ты","он/она","мы","вы","они"];setQuestions(verbs.map(v=>{const t=v.present||v.future;const avail=pronouns.filter(p=>t[p]);const pron=avail[Math.floor(Math.random()*avail.length)];const correct=t[pron];const extras=shuffle(VERBS.filter(vv=>vv!==v&&(vv.present||vv.future))).slice(0,3).map(vv=>{const tt=vv.present||vv.future;const vals=Object.values(tt);return vals[Math.floor(Math.random()*vals.length)]});return{prompt:`${v.inf} \u2192 ${pron}`,correct,options:shuffle([correct,...extras.filter(f=>f!==correct).slice(0,3)])}}))}
 else if(m==="cases"){const qs=[];for(let i=0;i<QCOUNT;i++){const c=CASES[Math.floor(Math.random()*CASES.length)];if(Math.random()>.5){const wrongs=shuffle(CASES.filter(x=>x!==c)).slice(0,3).map(x=>x.name);qs.push({prompt:`Which case answers: ${c.question}?`,correct:c.name,options:shuffle([c.name,...wrongs])})}else{const ex=c.examples[Math.floor(Math.random()*c.examples.length)];const wrongs=shuffle(CASES.filter(x=>x!==c)).slice(0,3).map(x=>x.name);qs.push({prompt:`Which case: \u201c${ex}\u201d`,correct:c.name,options:shuffle([c.name,...wrongs])})}}setQuestions(shuffle(qs))}
 else if(m==="preps"){const sh=shuffle(allPreps).slice(0,QCOUNT);setQuestions(sh.map(p=>{if(Math.random()>.5){const wrongs=shuffle(allPreps.filter(x=>x!==p)).slice(0,3).map(x=>x.en);return{prompt:p.prep,correct:p.en,options:shuffle([p.en,...wrongs])}}else{const allC=["Genitive","Dative","Accusative","Instrumental","Prepositional"];const wrongs=shuffle(allC.filter(c=>c!==p.case)).slice(0,3);return{prompt:`${p.prep} takes which case?`,correct:p.case,options:shuffle([p.case,...wrongs])}}}))}
@@ -352,9 +352,18 @@ const handleSelect=opt=>{if(selected!==null)return;setSelected(opt);if(opt===que
 const next=()=>{if(qIdx+1>=questions.length)setFinished(true);else{setQIdx(qIdx+1);setSelected(null)}};
 if(vocabPick==="picking")return e('div',null,
 e('p',{style:{color:'var(--text-muted)',marginBottom:16,fontSize:14}},'Pick a category:'),
-e('button',{onClick:()=>startVocabQuiz("All"),style:{display:'block',width:'100%',padding:'14px 16px',marginBottom:8,borderRadius:8,border:'none',background:'var(--bg-card)',cursor:'pointer',textAlign:'left'}},e('div',{style:{fontWeight:600,fontSize:15}},'All categories'),e('div',{style:{fontSize:13,color:'var(--text-muted)',marginTop:2}},`${allVocab.length} words`)),
-vocabCats.map(cat=>e('button',{key:cat,onClick:()=>startVocabQuiz(cat),style:{display:'block',width:'100%',padding:'14px 16px',marginBottom:8,borderRadius:8,border:'none',background:'var(--bg-card)',cursor:'pointer',textAlign:'left'}},e('div',{style:{fontWeight:600,fontSize:15}},cat),e('div',{style:{fontSize:13,color:'var(--text-muted)',marginTop:2}},`${VOCAB[cat].length} words`))),
+e('button',{onClick:()=>setVocabPick("All"),style:{display:'block',width:'100%',padding:'14px 16px',marginBottom:8,borderRadius:8,border:'none',background:'var(--bg-card)',cursor:'pointer',textAlign:'left'}},e('div',{style:{fontWeight:600,fontSize:15}},'All categories'),e('div',{style:{fontSize:13,color:'var(--text-muted)',marginTop:2}},`${allVocab.length} words`)),
+vocabCats.map(cat=>e('button',{key:cat,onClick:()=>setVocabPick(cat),style:{display:'block',width:'100%',padding:'14px 16px',marginBottom:8,borderRadius:8,border:'none',background:'var(--bg-card)',cursor:'pointer',textAlign:'left'}},e('div',{style:{fontWeight:600,fontSize:15}},cat),e('div',{style:{fontSize:13,color:'var(--text-muted)',marginTop:2}},`${VOCAB[cat].length} words`))),
 e('button',{className:'btn-ghost',style:{marginTop:8,width:'100%'},onClick:()=>setVocabPick(null)},'\u2190 Back to topics'),
+);
+if(vocabPick&&vocabPick!=="picking"&&!mode)return e('div',null,
+e('p',{style:{color:'var(--text-muted)',marginBottom:16,fontSize:14}},`${vocabPick} \u2014 pick a direction:`),
+[{id:"ru2en",label:"\u0420\u0443\u0441\u0441\u043a\u0438\u0439 \u2192 English",desc:"See Russian, pick the English"},
+{id:"en2ru",label:"English \u2192 \u0420\u0443\u0441\u0441\u043a\u0438\u0439",desc:"See English, pick the Russian"},
+{id:"mixed",label:"Mixed",desc:"Random direction each question"}].map(d=>
+e('button',{key:d.id,onClick:()=>startVocabQuiz(vocabPick,d.id),style:{display:'block',width:'100%',padding:'14px 16px',marginBottom:8,borderRadius:8,border:'none',background:'var(--bg-card)',cursor:'pointer',textAlign:'left'}},
+e('div',{style:{fontWeight:600,fontSize:15}},d.label),e('div',{style:{fontSize:13,color:'var(--text-muted)',marginTop:2}},d.desc))),
+e('button',{className:'btn-ghost',style:{marginTop:8,width:'100%'},onClick:()=>setVocabPick("picking")},'\u2190 Back to categories'),
 );
 if(!mode)return e('div',null,
 e('p',{style:{color:'var(--text-muted)',marginBottom:16,fontSize:14}},`${QCOUNT} questions, multiple choice. Pick a topic:`),
@@ -378,7 +387,7 @@ e('span',{style:{fontWeight:600}},q.correct)
 e('div',{style:{display:'flex',flexDirection:'column',gap:8,alignItems:'center'}},
 missedCount>0?e('button',{className:'btn-primary',style:{width:'auto',padding:'10px 20px'},onClick:startRetry},`Retry missed (${missedCount})`):null,
 e('div',{style:{display:'flex',gap:8}},
-e('button',{className:missedCount>0?'btn-secondary':'btn-primary',style:{padding:'10px 20px'},onClick:()=>mode==='vocab'?startVocabQuiz(vocabPick):startQuiz(mode)},'New round'),
+e('button',{className:missedCount>0?'btn-secondary':'btn-primary',style:{padding:'10px 20px'},onClick:()=>mode==='vocab'?startVocabQuiz(vocabPick,vocabDir):startQuiz(mode)},'New round'),
 e('button',{className:'btn-secondary',onClick:()=>{setMode(null);setVocabPick(null)}},'Change topic')
 ))
 )}
