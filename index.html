@@ -324,24 +324,53 @@ const allVocab=useMemo(()=>Object.values(VOCAB).flat(),[]);
 const allPreps=useMemo(()=>PREPOSITIONS.flatMap(g=>g.items),[]);
 const[mode,setMode]=useState(null);const[questions,setQuestions]=useState([]);
 const[qIdx,setQIdx]=useState(0);const[selected,setSelected]=useState(null);
-const[score,setScore]=useState(0);const[finished,setFinished]=useState(false);const QCOUNT=15;
+const[score,setScore]=useState(0);const[finished,setFinished]=useState(false);
+const[missed,setMissed]=useState([]);const[isRetry,setIsRetry]=useState(false);
+const QCOUNT=15;
 const startQuiz=useCallback(m=>{
-setMode(m);setScore(0);setQIdx(0);setSelected(null);setFinished(false);
+setMode(m);setScore(0);setQIdx(0);setSelected(null);setFinished(false);setMissed([]);setIsRetry(false);
 if(m==="vocab"){const sh=shuffle(allVocab).slice(0,QCOUNT);setQuestions(sh.map(w=>{const dir=Math.random()>.5?"ru2en":"en2ru";const correct=dir==="ru2en"?w.en:w.ru;const prompt=dir==="ru2en"?w.ru:w.en;const field=dir==="ru2en"?"en":"ru";const wrongs=shuffle(allVocab.filter(x=>x!==w)).slice(0,3).map(x=>x[field]);return{prompt,correct,options:shuffle([correct,...wrongs])}}))}
 else if(m==="verbs"){const verbs=shuffle(VERBS.filter(v=>v.present||v.future)).slice(0,QCOUNT);const pronouns=["я","ты","он/она","мы","вы","они"];setQuestions(verbs.map(v=>{const t=v.present||v.future;const avail=pronouns.filter(p=>t[p]);const pron=avail[Math.floor(Math.random()*avail.length)];const correct=t[pron];const extras=shuffle(VERBS.filter(vv=>vv!==v&&(vv.present||vv.future))).slice(0,3).map(vv=>{const tt=vv.present||vv.future;const vals=Object.values(tt);return vals[Math.floor(Math.random()*vals.length)]});return{prompt:`${v.inf} \u2192 ${pron}`,correct,options:shuffle([correct,...extras.filter(f=>f!==correct).slice(0,3)])}}))}
 else if(m==="cases"){const qs=[];for(let i=0;i<QCOUNT;i++){const c=CASES[Math.floor(Math.random()*CASES.length)];if(Math.random()>.5){const wrongs=shuffle(CASES.filter(x=>x!==c)).slice(0,3).map(x=>x.name);qs.push({prompt:`Which case answers: ${c.question}?`,correct:c.name,options:shuffle([c.name,...wrongs])})}else{const ex=c.examples[Math.floor(Math.random()*c.examples.length)];const wrongs=shuffle(CASES.filter(x=>x!==c)).slice(0,3).map(x=>x.name);qs.push({prompt:`Which case: \u201c${ex}\u201d`,correct:c.name,options:shuffle([c.name,...wrongs])})}}setQuestions(shuffle(qs))}
 else if(m==="preps"){const sh=shuffle(allPreps).slice(0,QCOUNT);setQuestions(sh.map(p=>{if(Math.random()>.5){const wrongs=shuffle(allPreps.filter(x=>x!==p)).slice(0,3).map(x=>x.en);return{prompt:p.prep,correct:p.en,options:shuffle([p.en,...wrongs])}}else{const allC=["Genitive","Dative","Accusative","Instrumental","Prepositional"];const wrongs=shuffle(allC.filter(c=>c!==p.case)).slice(0,3);return{prompt:`${p.prep} takes which case?`,correct:p.case,options:shuffle([p.case,...wrongs])}}}))}
 },[allVocab,allPreps]);
-const handleSelect=opt=>{if(selected!==null)return;setSelected(opt);if(opt===questions[qIdx].correct)setScore(s=>s+1)};
+const startRetry=()=>{
+const retryQs=missed.map(q=>({...q,options:shuffle(q.options)}));
+setQuestions(retryQs);setQIdx(0);setSelected(null);setScore(0);setFinished(false);setMissed([]);setIsRetry(true);
+};
+const handleSelect=opt=>{if(selected!==null)return;setSelected(opt);if(opt===questions[qIdx].correct)setScore(s=>s+1);else setMissed(prev=>[...prev,questions[qIdx]])};
 const next=()=>{if(qIdx+1>=questions.length)setFinished(true);else{setQIdx(qIdx+1);setSelected(null)}};
 if(!mode)return e('div',null,
 e('p',{style:{color:'var(--text-muted)',marginBottom:16,fontSize:14}},`${QCOUNT} questions, multiple choice. Pick a topic:`),
 [{id:"vocab",label:"Vocabulary",desc:"Translate words both directions"},{id:"verbs",label:"Verb conjugations",desc:"Pick the right form for the pronoun"},{id:"cases",label:"Cases",desc:"Identify the case from questions and examples"},{id:"preps",label:"Prepositions",desc:"Meanings and which case they take"}].map(m=>e('button',{key:m.id,onClick:()=>startQuiz(m.id),style:{display:'block',width:'100%',padding:'14px 16px',marginBottom:8,borderRadius:8,border:'none',background:'var(--bg-card)',cursor:'pointer',textAlign:'left'}},e('div',{style:{fontWeight:600,fontSize:15}},m.label),e('div',{style:{fontSize:13,color:'var(--text-muted)',marginTop:2}},m.desc))));
-if(finished){const pct=Math.round((score/questions.length)*100);const msg=pct>=90?"Solid.":pct>=70?"Getting there. Run it again.":pct>=50?"Some gaps. Review and retry.":"Worth going back to the reference sections.";
-return e('div',{style:{textAlign:'center',padding:'32px 0'}},e('div',{style:{fontSize:40,fontWeight:700,marginBottom:4}},`${score}/${questions.length}`),e('div',{style:{fontSize:16,color:'var(--text-muted)',marginBottom:4}},`${pct}%`),e('div',{style:{fontSize:15,color:'var(--text-muted)',marginBottom:20}},msg),e('div',{style:{display:'flex',gap:8,justifyContent:'center'}},e('button',{className:'btn-primary',style:{width:'auto',padding:'10px 20px'},onClick:()=>startQuiz(mode)},'Again'),e('button',{className:'btn-secondary',onClick:()=>setMode(null)},'Change topic')))}
+if(finished){const pct=Math.round((score/questions.length)*100);const missedCount=missed.length;
+const msg=pct===100?"Perfect.":pct>=90?"Solid.":pct>=70?"Getting there.":pct>=50?"Some gaps.":"Worth reviewing the reference sections.";
+return e('div',{style:{textAlign:'center',padding:'32px 0'}},
+e('div',{style:{fontSize:40,fontWeight:700,marginBottom:4}},`${score}/${questions.length}`),
+e('div',{style:{fontSize:16,color:'var(--text-muted)',marginBottom:4}},`${pct}%`),
+e('div',{style:{fontSize:15,color:'var(--text-muted)',marginBottom:8}},msg),
+isRetry&&pct===100?e('div',{style:{fontSize:14,color:'var(--accent)',marginBottom:16}},'All cleared!'):null,
+missedCount>0?e('div',{style:{marginBottom:20}},
+e('div',{style:{fontSize:13,color:'var(--text-muted)',marginBottom:10}},`${missedCount} missed:`),
+e('div',{style:{display:'flex',flexDirection:'column',gap:4,textAlign:'left',marginBottom:4}},missed.map((q,i)=>
+e('div',{key:i,style:{background:'var(--bg-card)',borderRadius:6,padding:'8px 12px',fontSize:14}},
+e('span',{style:{color:'var(--text-muted)'}},q.prompt),
+e('span',null,' \u2192 '),
+e('span',{style:{fontWeight:600}},q.correct)
+)))
+):null,
+e('div',{style:{display:'flex',flexDirection:'column',gap:8,alignItems:'center'}},
+missedCount>0?e('button',{className:'btn-primary',style:{width:'auto',padding:'10px 20px'},onClick:startRetry},`Retry missed (${missedCount})`):null,
+e('div',{style:{display:'flex',gap:8}},
+e('button',{className:missedCount>0?'btn-secondary':'btn-primary',style:{padding:'10px 20px'},onClick:()=>startQuiz(mode)},'New round'),
+e('button',{className:'btn-secondary',onClick:()=>setMode(null)},'Change topic')
+))
+)}
 const q=questions[qIdx];
 return e('div',null,
-e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:16}},e('span',{style:{fontSize:13,color:'var(--text-muted)'}},`${qIdx+1} / ${questions.length}`),e('span',{style:{fontSize:13,color:'var(--text-muted)'}},`${score} correct`)),
+e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:16}},
+e('span',{style:{fontSize:13,color:'var(--text-muted)'}},`${qIdx+1} / ${questions.length}${isRetry?' (retry)':''}`),
+e('span',{style:{fontSize:13,color:'var(--text-muted)'}},`${score} correct`)),
 e('div',{className:'card',style:{padding:16,marginBottom:14}},e('div',{style:{fontSize:18,fontWeight:600}},q.prompt)),
 e('div',{style:{display:'flex',flexDirection:'column',gap:6}},q.options.map((opt,i)=>{let cls='quiz-option';if(selected!==null){cls+=' locked';if(opt===q.correct)cls+=' correct';else if(opt===selected)cls+=' wrong'}return e('button',{key:i,className:cls,onClick:()=>handleSelect(opt)},opt)})),
 selected!==null&&e('button',{className:'btn-primary',style:{marginTop:14},onClick:next},qIdx+1>=questions.length?'See results':'Next'),
