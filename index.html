@@ -116,6 +116,12 @@ const VOCAB={
 {ru:"здесь / тут",en:"here"},{ru:"там",en:"there"},{ru:"далеко́",en:"far"},
 {ru:"бли́зко",en:"near"},{ru:"напра́во",en:"to the right"},{ru:"нале́во",en:"to the left"},
 ],
+"Demonstratives":[
+{ru:"э́тот",en:"this (m)"},{ru:"э́та",en:"this (f)"},{ru:"э́то",en:"this (n)"},{ru:"э́ти",en:"these"},
+{ru:"тот",en:"that (m)"},{ru:"та",en:"that (f)"},{ru:"то",en:"that (n)"},{ru:"те",en:"those"},
+{ru:"тако́й",en:"such (m)"},{ru:"тако́е",en:"such (n)"},{ru:"така́я",en:"such (f)"},{ru:"таки́е",en:"such (pl)"},
+{ru:"ка́ждый",en:"every/each"},{ru:"друго́й",en:"other/another"},{ru:"са́мый",en:"the most / the very"},
+],
 "Connectors":[
 {ru:"потому́ что",en:"because"},{ru:"поэ́тому",en:"therefore"},{ru:"но",en:"but"},
 {ru:"и́ли",en:"or"},{ru:"е́сли",en:"if"},{ru:"когда́",en:"when"},
@@ -250,11 +256,84 @@ const PHRASES={
 {ru:"По-мо́ему, ...",en:"In my opinion..."},
 {ru:"С одно́й стороны́ ... с друго́й стороны́ ...",en:"On the one hand ... on the other hand..."},
 ],
+"Verb + infinitive":[
+{ru:"Я хочу́ пое́хать в Росси́ю.",en:"I want to go to Russia."},
+{ru:"Он хо́чет рабо́тать удалённо.",en:"He wants to work remotely."},
+{ru:"Я могу́ помо́чь тебе́.",en:"I can help you."},
+{ru:"Она́ не мо́жет прийти́ сего́дня.",en:"She can't come today."},
+{ru:"Мне ну́жно купи́ть биле́т.",en:"I need to buy a ticket."},
+{ru:"На́до позвони́ть ма́ме.",en:"I/one need(s) to call mum."},
+{ru:"Мо́жно войти́?",en:"May I come in?"},
+{ru:"Нельзя́ кури́ть здесь.",en:"You can't smoke here."},
+{ru:"Я научи́лся говори́ть по-ру́сски.",en:"I learnt to speak Russian."},
+{ru:"Я начина́ю понима́ть.",en:"I'm beginning to understand."},
+{ru:"Он реши́л уе́хать.",en:"He decided to leave."},
+{ru:"Я люблю́ чита́ть.",en:"I love to read."},
+{ru:"Мне нра́вится бе́гать по у́тра́м.",en:"I like running in the mornings."},
+{ru:"Я до́лжен сказа́ть тебе́.",en:"I must tell you (m)."},
+{ru:"Она́ должна́ рабо́тать за́втра.",en:"She has to work tomorrow."},
+{ru:"Мы стара́емся говори́ть по-ру́сски.",en:"We try to speak Russian."},
+{ru:"Я забы́л позвони́ть.",en:"I forgot to call."},
+{ru:"Я бою́сь спроси́ть.",en:"I'm afraid to ask."},
+{ru:"Он предложи́л помо́чь.",en:"He offered to help."},
+{ru:"Я собира́юсь уе́хать ле́том.",en:"I'm planning to leave in summer."},
+],
+};
+
+const PRONOUNS={
+"Personal pronouns":{
+note:"Accusa\u0301tive = direct object (\u042f ви\u0301жу его\u0301 = I see him). Da\u0301tive = indirect object (\u042f дал ему\u0301 кни\u0301гу = I gave him a book). After prepositions, 3rd person forms add н- (у него\u0301, к ней, с ни\u0301ми).",
+headers:["","Nom.","Acc. (direct)","Dat. (indirect)","Gen.","Instr.","Prep."],
+rows:[
+["\u044f (I)","я","меня\u0301","мне","меня\u0301","мной","мне"],
+["\u0442\u044b (you)","ты","тебя\u0301","тебе\u0301","тебя\u0301","тобо\u0301й","тебе\u0301"],
+["\u043e\u043d (he/it)","он","его\u0301","ему\u0301","его\u0301","им","нём"],
+["\u043e\u043d\u0430\u0301 (she)","она\u0301","её","ей","её","ей","ней"],
+["\u043e\u043d\u043e\u0301 (it)","оно\u0301","его\u0301","ему\u0301","его\u0301","им","нём"],
+["\u043c\u044b (we)","мы","нас","нам","нас","на\u0301ми","нас"],
+["\u0432\u044b (you pl/formal)","вы","вас","вам","вас","ва\u0301ми","вас"],
+["\u043e\u043d\u0438\u0301 (they)","они\u0301","их","им","их","и\u0301ми","них"],
+]},
+"Direct object examples":{
+note:"The accusa\u0301tive form is used for the direct object of a verb (the thing/person receiving the action).",
+examples:[
+{ru:"\u042f ви\u0301жу тебя\u0301.",en:"I see you."},
+{ru:"\u041e\u043d зна\u0301ет меня\u0301.",en:"He knows me."},
+{ru:"\u041c\u044b лю\u0301бим его\u0301.",en:"We love him."},
+{ru:"\u041e\u043d\u0430\u0301 чита\u0301ет её.",en:"She reads it (f)."},
+{ru:"\u042f понима\u0301ю вас.",en:"I understand you (formal/pl)."},
+{ru:"\u041e\u043d\u0438\u0301 слу\u0301шают нас.",en:"They listen to us."},
+{ru:"\u042f их не зна\u0301ю.",en:"I don't know them."},
+]},
+"Indirect object examples":{
+note:"The da\u0301tive form is used for the indirect object (the person receiving something or benefiting from the action). Also used with нра\u0301виться, ну\u0301жно, мо\u0301жно, нельзя\u0301, ка\u0301жется, and for age.",
+examples:[
+{ru:"\u042f дал ему\u0301 кни\u0301гу.",en:"I gave him a book."},
+{ru:"\u041e\u043d\u0430\u0301 написа\u0301ла мне письмо\u0301.",en:"She wrote me a letter."},
+{ru:"\u041c\u043d\u0435 нра\u0301вится э\u0301тот фильм.",en:"I like this film (lit: this film is pleasing to me)."},
+{ru:"\u0415\u0301й ну\u0301жно рабо\u0301тать.",en:"She needs to work."},
+{ru:"\u0422\u0435\u0431\u0435\u0301 мо\u0301жно войти\u0301.",en:"You may come in."},
+{ru:"\u041d\u0430\u043c ка\u0301жется, что...",en:"It seems to us that..."},
+{ru:"\u0415\u043c\u0443\u0301 25 лет.",en:"He is 25 years old."},
+{ru:"\u042f им помога\u0301ю.",en:"I help them."},
+]},
+"\u044d\u0301\u0442\u043e\u0442 / \u0442\u043e\u0442 declension":{
+note:"\u044d\u0301\u0442\u043e\u0442 (this) and \u0442\u043e\u0442 (that) decline like adjectives. They agree with the noun in gender, number, and case.",
+headers:["","m","f","n","pl"],
+rows:[
+["Nom.","\u044d\u0301\u0442\u043e\u0442 / \u0442\u043e\u0442","\u044d\u0301\u0442\u0430 / \u0442\u0430","\u044d\u0301\u0442\u043e / \u0442\u043e","\u044d\u0301\u0442\u0438 / \u0442\u0435"],
+["Gen.","\u044d\u0301\u0442\u043e\u0433\u043e / \u0442\u043e\u0433\u043e\u0301","\u044d\u0301\u0442\u043e\u0439 / \u0442\u043e\u0439","\u044d\u0301\u0442\u043e\u0433\u043e / \u0442\u043e\u0433\u043e\u0301","\u044d\u0301\u0442\u0438\u0445 / \u0442\u0435\u0445"],
+["Dat.","\u044d\u0301\u0442\u043e\u043c\u0443 / \u0442\u043e\u043c\u0443\u0301","\u044d\u0301\u0442\u043e\u0439 / \u0442\u043e\u0439","\u044d\u0301\u0442\u043e\u043c\u0443 / \u0442\u043e\u043c\u0443\u0301","\u044d\u0301\u0442\u0438\u043c / \u0442\u0435\u043c"],
+["Acc. (inan.)","\u044d\u0301\u0442\u043e\u0442 / \u0442\u043e\u0442","\u044d\u0301\u0442\u0443 / \u0442\u0443","\u044d\u0301\u0442\u043e / \u0442\u043e","\u044d\u0301\u0442\u0438 / \u0442\u0435"],
+["Acc. (anim.)","= gen.","= gen.","= nom.","= gen."],
+["Instr.","\u044d\u0301\u0442\u0438\u043c / \u0442\u0435\u043c","\u044d\u0301\u0442\u043e\u0439 / \u0442\u043e\u0439","\u044d\u0301\u0442\u0438\u043c / \u0442\u0435\u043c","\u044d\u0301\u0442\u0438\u043c\u0438 / \u0442\u0435\u0301\u043c\u0438"],
+["Prep.","\u044d\u0301\u0442\u043e\u043c / \u0442\u043e\u043c","\u044d\u0301\u0442\u043e\u0439 / \u0442\u043e\u0439","\u044d\u0301\u0442\u043e\u043c / \u0442\u043e\u043c","\u044d\u0301\u0442\u0438\u0445 / \u0442\u0435\u0445"],
+]},
 };
 
 function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 
-const TABS=["Vocab","Verbs","Cases","Preps","Phrases","Quiz"];
+const TABS=["Vocab","Verbs","Cases","Preps","Pronouns","Phrases","Quiz"];
 
 function VocabSection(){
 const[cat,setCat]=useState(Object.keys(VOCAB)[0]);
@@ -307,6 +386,40 @@ e('div',{style:{display:'flex',flexDirection:'column',gap:8}},group.items.map((i
 e('div',{className:'prep-header'},e('span',{className:'prep'},item.prep),e('span',{className:'case'},item.case)),
 e('div',{className:'prep-meaning'},item.en),
 e('div',{className:'prep-example',style:{maxHeight:revealed[i]?100:0,opacity:revealed[i]?1:0,marginTop:revealed[i]?8:0,padding:revealed[i]?'8px 10px':'0 10px'}},e('div',{className:'ex'},item.ex),e('div',{className:'exen'},item.exEn)))))
+)}
+
+function PronounSection(){
+const cats=Object.keys(PRONOUNS);
+const[catIdx,setCatIdx]=useState(0);
+const cat=cats[catIdx];
+const data=PRONOUNS[cat];
+const[revealed,setRevealed]=useState({});
+const toggle=i=>setRevealed(r=>({...r,[i]:!r[i]}));
+
+return e('div',null,
+e('div',{className:'pill-bar'},cats.map((c,i)=>
+e('button',{key:i,className:'pill'+(i===catIdx?' active':''),onClick:()=>{setCatIdx(i);setRevealed({})}},c)
+)),
+e('div',{className:'card card-lg'},e('div',{style:{fontSize:14,lineHeight:1.6,color:'var(--text-muted)'}},data.note)),
+data.headers?e('div',{className:'card',style:{overflowX:'auto'}},
+e('table',{style:{width:'100%',borderCollapse:'collapse',fontSize:13}},
+e('thead',null,e('tr',null,data.headers.map((h,i)=>
+e('th',{key:i,style:{textAlign:'left',padding:'6px 8px',borderBottom:'2px solid var(--border)',color:'var(--text-muted)',fontWeight:600,whiteSpace:'nowrap'}},h)
+))),
+e('tbody',null,data.rows.map((row,ri)=>
+e('tr',{key:ri},row.map((cell,ci)=>
+e('td',{key:ci,style:{padding:'6px 8px',borderBottom:'1px solid var(--border)',fontWeight:ci===0?500:400,color:ci===0?'var(--text)':'var(--text)',whiteSpace:'nowrap',fontFamily:ci>0?'monospace':'inherit'}},cell)
+))
+))
+)
+):null,
+data.examples?e('div',{style:{display:'flex',flexDirection:'column',gap:6}},
+data.examples.map((ex,i)=>
+e('div',{key:i,className:'phrase-card',onClick:()=>toggle(i)},
+e('div',{className:'ru'},ex.ru),
+e('div',{className:'en',style:{maxHeight:revealed[i]?60:0,opacity:revealed[i]?1:0,marginTop:revealed[i]?6:0}},ex.en),
+)
+)):null
 )}
 
 function PhrasesSection(){
@@ -407,7 +520,7 @@ const[tab,setTab]=useState(0);
 return e('div',{id:'root-inner'},
 e('div',{className:'header',style:{marginBottom:20}},e('h1',null,'\u0420\u0443\u0441\u0441\u043a\u0438\u0439: Crash Course'),e('p',null,'Prueba de nivel prep')),
 e('div',{className:'tab-bar'},TABS.map((t,i)=>e('button',{key:t,className:'tab-btn'+(i===tab?' active':''),onClick:()=>setTab(i)},t))),
-tab===0&&e(VocabSection),tab===1&&e(VerbSection),tab===2&&e(CaseSection),tab===3&&e(PrepositionSection),tab===4&&e(PhrasesSection),tab===5&&e(QuizSection)
+tab===0&&e(VocabSection),tab===1&&e(VerbSection),tab===2&&e(CaseSection),tab===3&&e(PrepositionSection),tab===4&&e(PronounSection),tab===5&&e(PhrasesSection),tab===6&&e(QuizSection)
 )}
 ReactDOM.createRoot(document.getElementById('root')).render(e(App));
 </script>
