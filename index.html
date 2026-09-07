@@ -333,7 +333,51 @@ rows:[
 
 function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 
-const TABS=["Vocab","Verbs","Cases","Preps","Pronouns","Phrases","Quiz"];
+const ASPECT={
+"pairs":[
+{impf:"де́лать",perf:"сде́лать",en:"to do/make"},
+{impf:"писа́ть",perf:"написа́ть",en:"to write"},
+{impf:"чита́ть",perf:"прочита́ть",en:"to read"},
+{impf:"говори́ть",perf:"сказа́ть",en:"to speak / to say"},
+{impf:"покупа́ть",perf:"купи́ть",en:"to buy"},
+{impf:"дава́ть",perf:"дать",en:"to give"},
+{impf:"понима́ть",perf:"поня́ть",en:"to understand"},
+{impf:"брать",perf:"взять",en:"to take"},
+{impf:"откры́ть",perf:"открыва́ть",en:"to open"},
+{impf:"закрыва́ть",perf:"закры́ть",en:"to close"},
+{impf:"начина́ть",perf:"нача́ть",en:"to begin"},
+{impf:"получа́ть",perf:"получи́ть",en:"to receive"},
+{impf:"реша́ть",perf:"реши́ть",en:"to decide/solve"},
+{impf:"отвеча́ть",perf:"отве́тить",en:"to answer"},
+{impf:"помога́ть",perf:"помо́чь",en:"to help"},
+{impf:"забыва́ть",perf:"забы́ть",en:"to forget"},
+{impf:"объясня́ть",perf:"объясни́ть",en:"to explain"},
+{impf:"спра́шивать",perf:"спроси́ть",en:"to ask"},
+{impf:"встава́ть",perf:"встать",en:"to get up"},
+{impf:"возвраща́ться",perf:"верну́ться",en:"to return"},
+],
+"rules":[
+{label:"Process vs result",impf:"Я чита́л кни́гу.",impfEn:"I was reading a book (process, maybe unfinished).",perf:"Я прочита́л кни́гу.",perfEn:"I read/finished the book (result, done)."},
+{label:"Habitual vs one-off",impf:"Я ка́ждый день писа́л письма́.",impfEn:"I wrote letters every day (repeated).",perf:"Я написа́л письмо́.",perfEn:"I wrote a letter (one, completed)."},
+{label:"Duration vs moment",impf:"Мы до́лго реша́ли.",impfEn:"We were deciding for a long time.",perf:"Мы реши́ли.",perfEn:"We decided (moment of completion)."},
+{label:"Negation (didn't do at all)",impf:"Я не чита́л э́ту кни́гу.",impfEn:"I haven't read this book (never, no attempt).",perf:"Я не прочита́л э́ту кни́гу.",perfEn:"I didn't finish reading this book (tried, no result)."},
+{label:"Future",impf:"Я бу́ду чита́ть за́втра.",impfEn:"I will read tomorrow (ongoing / general).",perf:"Я прочита́ю за́втра.",perfEn:"I will read (and finish) it tomorrow."},
+{label:"Narrating a sequence",impf:"",impfEn:"(Imperfective: background / simultaneous actions)",perf:"Я встал, позавтра́кал, пошёл на рабо́ту.",perfEn:"I got up, had breakfast, went to work (chain of completed actions)."},
+],
+"motion":[
+{uni:"идти́ (иду́, идёшь)",multi:"ходи́ть (хожу́, хо́дишь)",en:"on foot",uniUse:"One direction, right now: Я иду́ в магази́н.",multiUse:"Habitual / round trip: Я хожу́ в магази́н ка́ждый день."},
+{uni:"е́хать (е́ду, е́дешь)",multi:"е́здить (е́зжу, е́здишь)",en:"by transport",uniUse:"One direction, right now: Я е́ду на рабо́ту.",multiUse:"Habitual / round trip: Я е́зжу на рабо́ту на авто́бусе."},
+{uni:"бежа́ть (бегу́, бежи́шь)",multi:"бе́гать (бе́гаю, бе́гаешь)",en:"running",uniUse:"One direction: Он бежи́т к до́му.",multiUse:"Habitual: Я бе́гаю по утра́м."},
+],
+"conjugations":{
+note:"1st conjugation: -ать/-ять/-еть/-уть → 3rd pers. -ет / -ют. 2nd conjugation: -ить → 3rd pers. -ит / -ят. Exceptions (look like 1st, conjugate as 2nd):",
+spelling:"-ют and -ут are the same ending (1st conj.), -ят and -ат are the same ending (2nd conj.). The difference is a spelling rule: after a hard consonant stem → -ут / -ат (жить → живу́т, слы́шать → слы́шат). After a vowel or soft consonant → -ют / -ят (чита́ть → чита́ют, говори́ть → говоря́т).",
+first:{label:"1st conjugation (-ет / -ют / -ут)",endings:{"я":"-ю / -у","ты":"-ешь","он/она":"-ет","мы":"-ем","вы":"-ете","они":"-ют (after vowel/soft) / -ут (after hard)"},example:"чита́ть → чита́ют, жить → живу́т, мочь → мо́гут, идти́ → иду́т"},
+second:{label:"2nd conjugation (-ит / -ят / -ат)",endings:{"я":"-ю / -у","ты":"-ишь","он/она":"-ит","мы":"-им","вы":"-ите","они":"-ят (after vowel/soft) / -ат (after hard)"},example:"говори́ть → говоря́т, слы́шать → слы́шат"},
+exceptions:["гна́ть","держа́ть","дыша́ть","слы́шать","смотре́ть","ви́деть","ненави́деть","зави́сеть","терпе́ть","оби́деть","верте́ть"],
+}};
+
+const TABS=["Vocab","Verbs","Aspect","Cases","Preps","Pronouns","Phrases","Quiz"];
 
 function VocabSection(){
 const[cat,setCat]=useState(Object.keys(VOCAB)[0]);
@@ -366,6 +410,75 @@ v.future?tenseCard('Future (perfective)',Object.entries(v.future)):null,
 v.inf==='быть'?tenseCard('Future',Object.entries(cf)):null,
 tenseCard('Past',Object.entries(v.past)),
 e('div',{style:{display:'flex',flexWrap:'wrap',gap:4,marginTop:14}},VERBS.map((_,i)=>e('button',{key:i,className:'nav-dot'+(i===idx?' active':''),onClick:()=>setIdx(i)},i+1)))
+)}
+
+function AspectSection(){
+const tabs=["Aspect pairs","When to use","Motion verbs","Conjugation classes"];
+const[sub,setSub]=useState(0);
+const[revealed,setRevealed]=useState({});
+const toggle=i=>setRevealed(r=>({...r,[i]:!r[i]}));
+const reset=()=>setRevealed({});
+
+if(sub===0)return e('div',null,
+e('div',{className:'pill-bar'},tabs.map((t,i)=>e('button',{key:i,className:'pill'+(i===sub?' active':''),onClick:()=>{setSub(i);reset()}},t))),
+e('p',{style:{fontSize:13,color:'var(--text-muted)',marginBottom:12}},'Imperfective = process / habitual. Perfective = result / one-off. Tap a pair to see the English.'),
+e('div',{style:{display:'flex',flexDirection:'column',gap:4}},ASPECT.pairs.map((p,i)=>
+e('div',{key:i,className:'vocab-row',onClick:()=>toggle(i)},
+e('span',{style:{fontSize:15}},e('span',{style:{fontWeight:500}},p.impf),e('span',{style:{color:'var(--text-muted)',margin:'0 6px'}},'/'),e('span',{style:{fontWeight:500}},p.perf)),
+e('span',{className:'en',style:{fontSize:14,color:revealed[i]?'var(--text)':'transparent'}},p.en)
+)))
+);
+
+if(sub===1)return e('div',null,
+e('div',{className:'pill-bar'},tabs.map((t,i)=>e('button',{key:i,className:'pill'+(i===sub?' active':''),onClick:()=>{setSub(i);reset()}},t))),
+e('div',{style:{display:'flex',flexDirection:'column',gap:10}},ASPECT.rules.map((r,i)=>
+e('div',{key:i,className:'card card-lg'},
+e('div',{style:{fontSize:14,fontWeight:600,marginBottom:8,color:'var(--accent)'}},r.label),
+r.impf?e('div',{style:{marginBottom:8}},
+e('div',{className:'label-sm'},'Imperfective'),
+e('div',{style:{fontSize:15,fontWeight:500}},r.impf),
+e('div',{style:{fontSize:13,color:'var(--text-muted)'}},r.impfEn)
+):null,
+r.perf?e('div',null,
+e('div',{className:'label-sm'},'Perfective'),
+e('div',{style:{fontSize:15,fontWeight:500}},r.perf),
+e('div',{style:{fontSize:13,color:'var(--text-muted)'}},r.perfEn)
+):null,
+)))
+);
+
+if(sub===2)return e('div',null,
+e('div',{className:'pill-bar'},tabs.map((t,i)=>e('button',{key:i,className:'pill'+(i===sub?' active':''),onClick:()=>{setSub(i);reset()}},t))),
+e('p',{style:{fontSize:13,color:'var(--text-muted)',marginBottom:12}},'Unidirectional = one trip, right now. Multidirectional = habitual, round trips, general ability.'),
+e('div',{style:{display:'flex',flexDirection:'column',gap:10}},ASPECT.motion.map((m,i)=>
+e('div',{key:i,className:'card card-lg'},
+e('div',{style:{fontSize:14,fontWeight:600,marginBottom:8}},m.en),
+e('div',{style:{marginBottom:10}},
+e('div',{className:'label-sm'},'Unidirectional'),
+e('div',{style:{fontSize:15,fontWeight:500,marginBottom:2}},m.uni),
+e('div',{style:{fontSize:13,color:'var(--text-muted)'}},m.uniUse)),
+e('div',null,
+e('div',{className:'label-sm'},'Multidirectional'),
+e('div',{style:{fontSize:15,fontWeight:500,marginBottom:2}},m.multi),
+e('div',{style:{fontSize:13,color:'var(--text-muted)'}},m.multiUse)),
+)))
+);
+
+const cj=ASPECT.conjugations;
+return e('div',null,
+e('div',{className:'pill-bar'},tabs.map((t,i)=>e('button',{key:i,className:'pill'+(i===sub?' active':''),onClick:()=>{setSub(i);reset()}},t))),
+e('div',{className:'card card-lg'},e('div',{style:{fontSize:14,lineHeight:1.6,color:'var(--text-muted)'}},cj.note)),
+e('div',{className:'card'},e('div',{className:'label-sm'},'-ют vs -ут / -ят vs -ат'),e('div',{style:{fontSize:14,lineHeight:1.6,color:'var(--text-muted)'}},cj.spelling)),
+[cj.first,cj.second].map(c=>e('div',{key:c.label,className:'card'},
+e('div',{className:'label-sm'},c.label),
+...Object.entries(c.endings).map(([p,end])=>e('div',{key:p,className:'row'},e('span',{className:'row-label'},p),e('span',{className:'row-value',style:{fontFamily:'monospace'}},end))),
+e('div',{style:{marginTop:8,fontSize:13,color:'var(--accent)'}},c.example)
+)),
+e('div',{className:'card'},
+e('div',{className:'label-sm'},'11 exceptions (conjugate as 2nd)'),
+e('div',{style:{display:'flex',flexWrap:'wrap',gap:6}},cj.exceptions.map((v,i)=>
+e('span',{key:i,style:{background:'var(--bg)',padding:'4px 10px',borderRadius:4,fontSize:14,fontWeight:500}},v)
+)))
 )}
 
 function CaseSection(){
@@ -520,7 +633,7 @@ const[tab,setTab]=useState(0);
 return e('div',{id:'root-inner'},
 e('div',{className:'header',style:{marginBottom:20}},e('h1',null,'\u0420\u0443\u0441\u0441\u043a\u0438\u0439: Crash Course'),e('p',null,'Prueba de nivel prep')),
 e('div',{className:'tab-bar'},TABS.map((t,i)=>e('button',{key:t,className:'tab-btn'+(i===tab?' active':''),onClick:()=>setTab(i)},t))),
-tab===0&&e(VocabSection),tab===1&&e(VerbSection),tab===2&&e(CaseSection),tab===3&&e(PrepositionSection),tab===4&&e(PronounSection),tab===5&&e(PhrasesSection),tab===6&&e(QuizSection)
+tab===0&&e(VocabSection),tab===1&&e(VerbSection),tab===2&&e(AspectSection),tab===3&&e(CaseSection),tab===4&&e(PrepositionSection),tab===5&&e(PronounSection),tab===6&&e(PhrasesSection),tab===7&&e(QuizSection)
 )}
 ReactDOM.createRoot(document.getElementById('root')).render(e(App));
 </script>
